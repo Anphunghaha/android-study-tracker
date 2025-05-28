@@ -1,0 +1,80 @@
+Dự án Ứng dụng quản lý học tập 
+- Chức năng cho người dùng:
++Thêm Sửa xóa môn học, bài tập, deadline
+
++Thông báo trước deadline
+
++Đánh dấu bài đã hoàn thành
+
+-Web Admin: 
+ +Quản lý môn học
+ + thống kê tiến độ sinh viên
+
+-Tính năng nâng cao:
++Đồng bộ nhiều thiết bị bằng tài khoản
++Tính năng nhắc lịch bằng thông báo (Notification + AlarmManager)
+
+Thông báo theo thời gian thực cho bài tập sắp đến hạn
+
+Màn Hình:
+1. Màn hình Splash / Giới thiệu (Splash/Intro screen)
+Logo app + giới thiệu nhanh (có thể bỏ qua nếu không cần)
+
+2.Màn hình Đăng nhập / Đăng ký
+Đăng nhập bằng email + mật khẩu
+
+Đăng ký tài khoản mới
+
+(Nâng cao) Quên mật khẩu / Reset password
+
+Firebase Auth hoặc backend tùy chọn
+
+3.Màn hình Trang chủ (Dashboard/Main Screen)
+Hiển thị danh sách môn học đang học
+
+Nút Thêm môn học
+
+Có thể có biểu đồ thống kê (nâng cao)
+
+Điều hướng sang các phần khác
+
+4. Màn hình Thêm / Sửa môn học
+Nhập tên môn, màu sắc (tag), học kỳ, ghi chú,...
+
+Dùng chung cho thêm & sửa (tùy context)
+Màn hình Danh sách bài tập của môn học
+
+5.Liệt kê các bài tập thuộc môn đã chọn
+
+Hiển thị tiêu đề, hạn nộp, trạng thái (hoàn thành/chưa)
+
+Nút thêm bài tập
+
+Menu sửa/xoá bài tập (context menu hoặc swipe)
+
+6. Màn hình Thêm / Sửa bài tập
+Nhập tiêu đề, mô tả, deadline (chọn bằng DatePicker), trạng thái hoàn thành
+
+Lưu vào backend
+
+7. Màn hình Thông báo / Nhắc lịch
+Danh sách các thông báo sắp tới (optional)
+
+Có thể bật/tắt nhắc deadline
+
+Notification push hoặc local alarm
+
+8. Màn hình Thống kê cá nhân
+Biểu đồ progress: % hoàn thành, số lượng bài đã xong / chưa xong
+
+Theo môn học, theo tuần/tháng
+
+Pie chart, bar chart (thư viện: MPAndroidChart)
+
+9. Màn hình Cài đặt / Tài khoản
+Đổi mật khẩu
+
+Đăng xuất
+
+(Nâng cao) Đồng bộ tài khoản, kết nối thiết bị khác
+
