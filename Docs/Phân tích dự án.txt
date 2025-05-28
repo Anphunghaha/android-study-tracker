@@ -1,5 +1,6 @@
 Dự án Ứng dụng quản lý học tập 
 - Chức năng cho người dùng:
+
 +Thêm Sửa xóa môn học, bài tập, deadline
 
 +Thông báo trước deadline
@@ -7,14 +8,14 @@ Dự án Ứng dụng quản lý học tập
 +Đánh dấu bài đã hoàn thành
 
 -Web Admin: 
- +Quản lý môn học
- + thống kê tiến độ sinh viên
+ +Quản lý môn học.
+ + thống kê tiến độ sinh viên.
 
 -Tính năng nâng cao:
-+Đồng bộ nhiều thiết bị bằng tài khoản
-+Tính năng nhắc lịch bằng thông báo (Notification + AlarmManager)
+ +Đồng bộ nhiều thiết bị bằng tài khoản.
+ +Tính năng nhắc lịch bằng thông báo (Notification + AlarmManager).
 
-Thông báo theo thời gian thực cho bài tập sắp đến hạn
+Thông báo theo thời gian thực cho bài tập sắp đến hạn.
 
 Màn Hình:
 1. Màn hình Splash / Giới thiệu (Splash/Intro screen)
