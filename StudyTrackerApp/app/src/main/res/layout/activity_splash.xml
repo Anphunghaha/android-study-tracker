@@ -8,19 +8,22 @@
     android:background="#DCE4DB"
     android:gravity="center"
     tools:context=".SplashMainActivity">
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/logoImage"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:src="@mipmap/ic_launcher"
-        android:layout_centerInParent="true"/>
+        android:src="@drawable/rohang"
+        android:layout_centerInParent="true"
+        android:scaleType="centerCrop"
+        app:shapeAppearanceOverlay="@style/CircleImageView" />
+
 
     <TextView
         android:id="@+id/appName"
         android:layout_below="@id/logoImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Study Tracker"
+        android:text="Shop Book"
         android:textColor="#1A0808"
         android:textSize="24sp"
         android:layout_marginTop="20dp"
