@@ -1,0 +1,101 @@
+
+
+-- Bảng Authors
+CREATE TABLE Authors (
+    AuthorID INT IDENTITY(1,1) PRIMARY KEY,
+    Name NVARCHAR(100) NOT NULL,
+    Bio NVARCHAR(1000),
+    BirthDate DATETIME NULL,
+    CreatedAt DATETIME DEFAULT GETDATE()
+);
+
+-- Bảng Categories
+CREATE TABLE Categories (
+    CategoryID INT IDENTITY(1,1) PRIMARY KEY,
+    Name NVARCHAR(100) NOT NULL,
+    Description NVARCHAR(500),
+    CreatedAt DATETIME DEFAULT GETDATE()
+);
+
+-- Bảng Users
+CREATE TABLE Users (
+    UserID INT IDENTITY(1,1) PRIMARY KEY,
+    Username NVARCHAR(50) NOT NULL UNIQUE,
+    Password NVARCHAR(100) NOT NULL,
+    FullName NVARCHAR(100),
+    Email NVARCHAR(100),
+    Address NVARCHAR(200),
+    Role NVARCHAR(20) DEFAULT 'Customer',
+    CreatedAt DATETIME DEFAULT GETDATE()
+);
+
+-- Bảng Books (liên kết Authors và Categories)
+CREATE TABLE Books (
+    BookID INT IDENTITY(1,1) PRIMARY KEY,
+    Title NVARCHAR(200) NOT NULL,
+    AuthorID INT NOT NULL,
+    CategoryID INT NOT NULL,
+    Description NVARCHAR(1000),
+    Price DECIMAL(18, 2) NOT NULL,
+    Stock INT DEFAULT 0,
+    ImageUrl NVARCHAR(255),
+    CreatedAt DATETIME DEFAULT GETDATE(),
+    FOREIGN KEY (AuthorID) REFERENCES Authors(AuthorID),
+    FOREIGN KEY (CategoryID) REFERENCES Categories(CategoryID)
+);
+
+-- Bảng Orders
+CREATE TABLE Orders (
+    OrderID INT IDENTITY(1,1) PRIMARY KEY,
+    UserID INT NOT NULL,
+    OrderDate DATETIME DEFAULT GETDATE(),
+    TotalAmount DECIMAL(18, 2),
+    FOREIGN KEY (UserID) REFERENCES Users(UserID)
+);
+
+-- Bảng OrderItems
+CREATE TABLE OrderItems (
+    OrderItemID INT IDENTITY(1,1) PRIMARY KEY,
+    OrderID INT NOT NULL,
+    BookID INT NOT NULL,
+    Quantity INT NOT NULL,
+    UnitPrice DECIMAL(18, 2) NOT NULL,
+    FOREIGN KEY (OrderID) REFERENCES Orders(OrderID),
+    FOREIGN KEY (BookID) REFERENCES Books(BookID)
+);
+-- Authors
+INSERT INTO Authors (Name, Bio, BirthDate)
+VALUES 
+(N'Nguyễn Văn A', N'Tác giả chuyên về lập trình C#', '1980-04-15'),
+(N'Trần Thị B', N'Chuyên giảng dạy HTML/CSS', '1975-09-20'),
+(N'Lê Văn C', N'Tác giả viết sách SQL và CSDL', '1990-01-01');
+
+-- Categories
+INSERT INTO Categories (Name, Description)
+VALUES 
+(N'Lập trình', N'Sách dạy các ngôn ngữ lập trình'),
+(N'Thiết kế web', N'Kiến thức về HTML, CSS, UI/UX'),
+(N'Cơ sở dữ liệu', N'Hệ quản trị cơ sở dữ liệu và SQL');
+
+-- Users
+INSERT INTO Users (Username, Password, FullName, Email, Address, Role)
+VALUES 
+('admin', 'admin123', 'Admin User', 'admin@bookstore.com', '123 Admin Street', 'Admin'),
+('john123', 'pass123', 'John Doe', 'john@example.com', '456 Main St', 'Customer');
+
+-- Books
+INSERT INTO Books (Title, AuthorID, CategoryID, Description, Price, Stock, ImageUrl)
+VALUES 
+(N'Lập trình C# căn bản', 1, 1, N'Giáo trình C# cơ bản cho người mới bắt đầu', 120000, 10, 'https://example.com/img1.jpg'),
+(N'Thiết kế Web với HTML/CSS', 2, 2, N'Sách học HTML/CSS từ cơ bản đến nâng cao', 99000, 5, 'https://example.com/img2.jpg'),
+(N'Học SQL trong 7 ngày', 3, 3, N'Hướng dẫn học SQL nhanh chóng, dễ hiểu', 85000, 15, 'https://example.com/img3.jpg');
+
+-- Orders
+INSERT INTO Orders (UserID, OrderDate, TotalAmount)
+VALUES (2, GETDATE(), 219000);
+
+-- OrderItems
+INSERT INTO OrderItems (OrderID, BookID, Quantity, UnitPrice)
+VALUES 
+(1, 1, 1, 120000),
+(1, 2, 1, 99000);
