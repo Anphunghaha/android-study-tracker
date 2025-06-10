@@ -1,0 +1,15 @@
+E:\Tailieuhoc\ProjectAll\ProjectPRM\android-study-tracker\BackEnd_API\API_BookStoreApp\BusinessObject\bin\Debug\net8.0\BusinessObject.deps.json
+E:\Tailieuhoc\ProjectAll\ProjectPRM\android-study-tracker\BackEnd_API\API_BookStoreApp\BusinessObject\bin\Debug\net8.0\BusinessObject.runtimeconfig.json
+E:\Tailieuhoc\ProjectAll\ProjectPRM\android-study-tracker\BackEnd_API\API_BookStoreApp\BusinessObject\bin\Debug\net8.0\BusinessObject.dll
+E:\Tailieuhoc\ProjectAll\ProjectPRM\android-study-tracker\BackEnd_API\API_BookStoreApp\BusinessObject\bin\Debug\net8.0\BusinessObject.pdb
+E:\Tailieuhoc\ProjectAll\ProjectPRM\android-study-tracker\BackEnd_API\API_BookStoreApp\BusinessObject\obj\Debug\net8.0\BusinessObject.csproj.AssemblyReference.cache
+E:\Tailieuhoc\ProjectAll\ProjectPRM\android-study-tracker\BackEnd_API\API_BookStoreApp\BusinessObject\obj\Debug\net8.0\BusinessObject.GeneratedMSBuildEditorConfig.editorconfig
+E:\Tailieuhoc\ProjectAll\ProjectPRM\android-study-tracker\BackEnd_API\API_BookStoreApp\BusinessObject\obj\Debug\net8.0\BusinessObject.AssemblyInfoInputs.cache
+E:\Tailieuhoc\ProjectAll\ProjectPRM\android-study-tracker\BackEnd_API\API_BookStoreApp\BusinessObject\obj\Debug\net8.0\BusinessObject.AssemblyInfo.cs
+E:\Tailieuhoc\ProjectAll\ProjectPRM\android-study-tracker\BackEnd_API\API_BookStoreApp\BusinessObject\obj\Debug\net8.0\BusinessObject.csproj.CoreCompileInputs.cache
+E:\Tailieuhoc\ProjectAll\ProjectPRM\android-study-tracker\BackEnd_API\API_BookStoreApp\BusinessObject\obj\Debug\net8.0\BusinessObject.sourcelink.json
+E:\Tailieuhoc\ProjectAll\ProjectPRM\android-study-tracker\BackEnd_API\API_BookStoreApp\BusinessObject\obj\Debug\net8.0\BusinessObject.dll
+E:\Tailieuhoc\ProjectAll\ProjectPRM\android-study-tracker\BackEnd_API\API_BookStoreApp\BusinessObject\obj\Debug\net8.0\refint\BusinessObject.dll
+E:\Tailieuhoc\ProjectAll\ProjectPRM\android-study-tracker\BackEnd_API\API_BookStoreApp\BusinessObject\obj\Debug\net8.0\BusinessObject.pdb
+E:\Tailieuhoc\ProjectAll\ProjectPRM\android-study-tracker\BackEnd_API\API_BookStoreApp\BusinessObject\obj\Debug\net8.0\BusinessObject.genruntimeconfig.cache
+E:\Tailieuhoc\ProjectAll\ProjectPRM\android-study-tracker\BackEnd_API\API_BookStoreApp\BusinessObject\obj\Debug\net8.0\ref\BusinessObject.dll

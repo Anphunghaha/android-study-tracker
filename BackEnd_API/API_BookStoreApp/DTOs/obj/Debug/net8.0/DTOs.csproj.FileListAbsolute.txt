@@ -1,0 +1,12 @@
+E:\Tailieuhoc\ProjectAll\ProjectPRM\android-study-tracker\BackEnd_API\API_BookStoreApp\DTOs\bin\Debug\net8.0\DTOs.deps.json
+E:\Tailieuhoc\ProjectAll\ProjectPRM\android-study-tracker\BackEnd_API\API_BookStoreApp\DTOs\bin\Debug\net8.0\DTOs.dll
+E:\Tailieuhoc\ProjectAll\ProjectPRM\android-study-tracker\BackEnd_API\API_BookStoreApp\DTOs\bin\Debug\net8.0\DTOs.pdb
+E:\Tailieuhoc\ProjectAll\ProjectPRM\android-study-tracker\BackEnd_API\API_BookStoreApp\DTOs\obj\Debug\net8.0\DTOs.GeneratedMSBuildEditorConfig.editorconfig
+E:\Tailieuhoc\ProjectAll\ProjectPRM\android-study-tracker\BackEnd_API\API_BookStoreApp\DTOs\obj\Debug\net8.0\DTOs.AssemblyInfoInputs.cache
+E:\Tailieuhoc\ProjectAll\ProjectPRM\android-study-tracker\BackEnd_API\API_BookStoreApp\DTOs\obj\Debug\net8.0\DTOs.AssemblyInfo.cs
+E:\Tailieuhoc\ProjectAll\ProjectPRM\android-study-tracker\BackEnd_API\API_BookStoreApp\DTOs\obj\Debug\net8.0\DTOs.csproj.CoreCompileInputs.cache
+E:\Tailieuhoc\ProjectAll\ProjectPRM\android-study-tracker\BackEnd_API\API_BookStoreApp\DTOs\obj\Debug\net8.0\DTOs.sourcelink.json
+E:\Tailieuhoc\ProjectAll\ProjectPRM\android-study-tracker\BackEnd_API\API_BookStoreApp\DTOs\obj\Debug\net8.0\DTOs.dll
+E:\Tailieuhoc\ProjectAll\ProjectPRM\android-study-tracker\BackEnd_API\API_BookStoreApp\DTOs\obj\Debug\net8.0\refint\DTOs.dll
+E:\Tailieuhoc\ProjectAll\ProjectPRM\android-study-tracker\BackEnd_API\API_BookStoreApp\DTOs\obj\Debug\net8.0\DTOs.pdb
+E:\Tailieuhoc\ProjectAll\ProjectPRM\android-study-tracker\BackEnd_API\API_BookStoreApp\DTOs\obj\Debug\net8.0\ref\DTOs.dll
