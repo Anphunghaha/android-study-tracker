@@ -70,7 +70,7 @@ namespace DataAccessObject
             return await _context.Books
                 .Include(b => b.Author)
                 .Include(b => b.Category)
-                .Where(b => b.Title.Contains(keyword)|| b.Description.Contains(keyword)||b.Category.Name.Contains(keyword))
+                .Where(b => b.Title.Contains(keyword)|| b.Description.Contains(keyword)||b.Category.Name.ToLower().Contains(keyword.ToLower())||b.Author.Name.ToLower().Contains(keyword.ToLower()))
                 .ToListAsync();
         }
         public async Task<List<Book>> GetBooksByCategoryAsync(int categoryId)

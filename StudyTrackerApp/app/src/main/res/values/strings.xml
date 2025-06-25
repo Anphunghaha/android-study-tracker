@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">StudyTrackerApp</string>
+    <string name="app_name">Book Store</string>
+    <string name="select_category">Chọn danh mục</string>
 </resources>

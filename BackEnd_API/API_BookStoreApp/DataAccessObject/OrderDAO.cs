@@ -25,6 +25,15 @@ namespace DataAccessObject
             {
                 item.OrderId = order.OrderId;
                 _context.OrderItems.Add(item);
+
+                // ✅ Trừ tồn kho cho mỗi sách
+                var book = await _context.Books.FindAsync(item.BookId);
+                if (book == null)
+                {
+                    throw new Exception($"Book with ID {item.BookId} not found when updating stock.");
+                }
+                book.Stock -= item.Quantity;
+                _context.Books.Update(book);
             }
 
             await _context.SaveChangesAsync();

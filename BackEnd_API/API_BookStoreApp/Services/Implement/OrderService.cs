@@ -27,6 +27,7 @@ namespace Services.Implement
             // Tạo Order mới (chưa có TotalAmount)
             var order = new Order
             {
+                UserId = request.UserId,
                 OrderDate = DateTime.UtcNow,
                 TotalAmount = 0, // sẽ tính sau
             };
@@ -40,6 +41,11 @@ namespace Services.Implement
 
                 if (book == null)
                     throw new Exception($"Book with ID {item.BookId} not found");
+
+                // ✅ Kiểm tra tồn kho tại đây
+                if (book.Stock < item.Quantity)
+                    throw new Exception($"Not enough stock for book '{book.Title}'. Only {book.Stock} left.");
+
 
                 orderItems.Add(new OrderItem
                 {

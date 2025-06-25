@@ -23,7 +23,7 @@ public class SplashMainActivity extends AppCompatActivity {
             return insets;
         });
         new Handler().postDelayed(() -> {
-            Intent intent = new Intent(SplashMainActivity.this, LoginMainActivity.class);
+            Intent intent = new Intent(SplashMainActivity.this, MainActivity.class);
             startActivity(intent);
             finish(); // Kết thúc Splash để không quay lại được nữa
         }, 2500); // 2.5 giây

@@ -8,6 +8,7 @@ namespace DTOs.DTO
 {
     public class OrderCreateDTO
     {
+        public int UserId { get; set; } // 👈 thêm dòng này
         public List<OrderItemCreateDTO> Items { get; set; }
 
     }
