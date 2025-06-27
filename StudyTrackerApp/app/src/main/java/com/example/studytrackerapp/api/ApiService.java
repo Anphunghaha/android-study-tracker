@@ -31,8 +31,10 @@ public interface ApiService {
     Call<List<Category>> getAllCategories();
 
     // ✍️ Lấy tác giả
-    @GET("authors")
+    @GET("Author")
     Call<List<Author>> getAllAuthors();
+    @GET("Author/{id}")
+    Call<Author> getAuthorById(@Path("id") int id);
 
     // 📖 Lấy chi tiết sách theo id
     @GET("books/{id}")

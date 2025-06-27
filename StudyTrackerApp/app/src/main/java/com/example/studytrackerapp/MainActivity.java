@@ -1,5 +1,6 @@
 package com.example.studytrackerapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -15,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.studytrackerapp.Models.Author;
 import com.example.studytrackerapp.Models.Category;
 import com.example.studytrackerapp.apdapters.BookAdapter;
 import com.example.studytrackerapp.apdapters.CategoryAdapter;
@@ -37,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
     private CategoryAdapter categoryAdapter;
     private List<Book> allBooks = new ArrayList<>(); // danh sách gốc để tìm kiếm
     private List<Category> categories = new ArrayList<>();
+    private List<Author> authors = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +53,16 @@ public class MainActivity extends AppCompatActivity {
 
         // Set layout cho RecyclerView cho sách
         rvBooks.setLayoutManager(new LinearLayoutManager(this));
-        bookAdapter = new BookAdapter(this,new ArrayList<>());
-        rvBooks.setAdapter(bookAdapter);
+        bookAdapter = new BookAdapter(this, new ArrayList<>(), book -> {
+            Intent intent = new Intent(MainActivity.this, BookDetailActivity.class);
+            intent.putExtra("title", book.title);
+            intent.putExtra("imageUrl", book.imageUrl);
+            intent.putExtra("price", book.price);
+            intent.putExtra("description", book.description); // nếu có mô tả
+            intent.putExtra("stock", book.stock);
+            intent.putExtra("categoryName", getCategoryNameById(book.categoryId));
+            startActivity(intent);
+        });        rvBooks.setAdapter(bookAdapter);
 
         // Cài đặt RecyclerView cho category (ngang)
         rvCategories.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
@@ -60,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
         // Gọi API lấy danh sách sách
         loadBooks();
         loadCategories();
+        loadAuthors();
         // Xử lý tìm kiếm
         setupSearch();
     }
@@ -115,6 +128,42 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("API", "Nguyên nhân: ", t);
             }
         });
+    }
+    private void loadAuthors() {
+        ApiService apiService = ApiClient.getClient().create(ApiService.class);
+        apiService.getAllAuthors().enqueue(new Callback<List<Author>>() {
+            @Override
+            public void onResponse(Call<List<Author>> call, Response<List<Author>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    authors = response.body();
+                    Log.d("API", "Tải danh sách author thành công: " + authors.size());
+                } else {
+                    Log.e("API", "Lỗi tải author: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Author>> call, Throwable t) {
+                Log.e("API", "Lỗi kết nối khi tải author: " + t.getMessage());
+            }
+        });
+    }
+
+    public String getCategoryNameById(int categoryId) {
+        for (Category category : categories) {
+            if (category.getId() == categoryId) {
+                return category.getName();
+            }
+        }
+        return "Không rõ";
+    }
+    public String getAuthorNameById(int authorId) {
+        for (Author author : authors) {
+            if (author.authorId == authorId) {
+                return author.name;
+            }
+        }
+        return "Không rõ tác giả";
     }
     private void setupSearch() {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -179,6 +228,12 @@ public class MainActivity extends AppCompatActivity {
                     Log.e("API", "Lỗi lấy sách theo category: HTTP " + response.code() + " " + response.message());
                     bookAdapter.setBooks(new ArrayList<>());
                 }
+            }
+            private String getCategoryNameById(int categoryId) {
+                for (Category category : categories) {
+                    if (category.getId() == categoryId) return category.getName();
+                }
+                return "Không rõ";
             }
 
             @Override

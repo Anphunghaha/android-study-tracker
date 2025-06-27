@@ -5,6 +5,6 @@ public class Author {
     public int authorId;
     public String name;
     public String bio;
-    public Date birthDate;
-    public Date createdAt;
+    public String birthDate;
+    public String createdAt;
 }

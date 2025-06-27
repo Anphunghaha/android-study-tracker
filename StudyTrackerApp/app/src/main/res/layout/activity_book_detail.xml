@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent"
+
+    android:padding="16dp"
+
+    android:background="#FFFFFF">
+
+
+
+    <LinearLayout
+
+        android:orientation="vertical"
+
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content">
+
+
+
+        <!-- 📘 Ảnh bìa sách -->
+
+        <ImageView
+
+            android:id="@+id/imgDetailCover"
+
+            android:layout_width="200dp"
+
+            android:layout_height="300dp"
+
+            android:layout_gravity="center_horizontal"
+
+            android:scaleType="centerCrop"
+
+            android:layout_marginBottom="16dp" />
+
+
+
+        <!-- 🏷 Tiêu đề -->
+
+        <TextView
+
+            android:id="@+id/tvDetailTitle"
+
+            android:text="Tên sách"
+
+            android:textSize="20sp"
+
+            android:textStyle="bold"
+
+            android:textColor="#000000"
+
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content" />
+
+
+
+        <!-- 💰 Giá -->
+
+        <TextView
+
+            android:id="@+id/tvDetailPrice"
+
+            android:text="Giá sách"
+
+            android:textColor="@android:color/holo_green_dark"
+
+            android:textSize="16sp"
+
+            android:layout_marginTop="8dp"
+
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content" />
+
+
+
+        <!-- 📝 Mô tả -->
+
+        <TextView
+
+            android:id="@+id/tvDetailDescription"
+
+            android:text="Mô tả sách"
+
+            android:textSize="14sp"
+
+            android:textColor="#333333"
+
+            android:layout_marginTop="12dp"
+
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content" />
+
+
+
+        <!-- 📦 Tồn kho -->
+
+        <TextView
+
+            android:id="@+id/tvDetailStock"
+
+            android:text="Kho: ..."
+
+            android:textSize="14sp"
+
+            android:textColor="@android:color/darker_gray"
+
+            android:layout_marginTop="16dp"
+
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content" />
+
+
+
+        <!-- 📂 Thể loại -->
+
+        <TextView
+
+            android:id="@+id/tvDetailCategory"
+
+            android:text="Thể loại: ..."
+
+            android:textSize="14sp"
+
+            android:textColor="@android:color/darker_gray"
+
+            android:layout_marginTop="4dp"
+
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content" />
+
+
+
+        <!-- ✍️ Tác giả -->
+
+        <TextView
+
+            android:id="@+id/tvDetailAuthor"
+
+            android:text="Tác giả: ..."
+
+            android:textSize="14sp"
+
+            android:textColor="@android:color/darker_gray"
+
+            android:layout_marginTop="4dp"
+
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content" />
+
+
+
+    </LinearLayout>
+
+</ScrollView>
