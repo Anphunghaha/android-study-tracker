@@ -5,9 +5,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import java.text.NumberFormat;
 import java.util.Locale;
+import android.view.MenuItem;
+import androidx.annotation.NonNull;
 
 public class BookDetailActivity extends AppCompatActivity {
 
@@ -20,13 +23,24 @@ public class BookDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_detail);
 
+        Toolbar toolbar = findViewById(R.id.detailToolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); // Hiện nút back
         // Khởi tạo view
         initViews();
 
         // Nhận và hiển thị dữ liệu
         displayData();
     }
-
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            // Xử lý khi người dùng nhấn nút back trên Toolbar
+            finish(); // Trở về màn hình trước
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
     private void initViews() {
         imgCover = findViewById(R.id.imgDetailCover);
         tvTitle = findViewById(R.id.tvDetailTitle);

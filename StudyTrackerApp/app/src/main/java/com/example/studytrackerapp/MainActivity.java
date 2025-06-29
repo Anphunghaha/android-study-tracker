@@ -30,6 +30,12 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.Toast;
+
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView rvBooks;
@@ -46,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        setSupportActionBar(findViewById(R.id.toolbar));
         rvBooks = findViewById(R.id.rvBooks);
         rvCategories = findViewById(R.id.rvCategories);
         searchView = findViewById(R.id.searchView);
@@ -68,13 +74,39 @@ public class MainActivity extends AppCompatActivity {
         rvCategories.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         categoryAdapter = new CategoryAdapter(this, categories, this::onCategoryClick);
         rvCategories.setAdapter(categoryAdapter);
-
+        initViews();       // Setup RecyclerView, SearchView, v.v.
+        setupSearch();     // Setup listener search
         // Gọi API lấy danh sách sách
         loadBooks();
         loadCategories();
         loadAuthors();
         // Xử lý tìm kiếm
         setupSearch();
+        // ⚠️ Delay API calls to avoid ANR
+        new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(() -> {
+            loadBooks();
+            loadCategories();
+            loadAuthors();
+        }, 300); // Delay 300ms
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.menu_cart) {
+            Toast.makeText(this, "Giỏ hàng được nhấn", Toast.LENGTH_SHORT).show();
+            return true;
+        } else if (id == R.id.menu_login) {
+            Intent intent = new Intent(this, LoginMainActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void loadBooks() {
@@ -243,4 +275,32 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    private void initViews() {
+        rvBooks = findViewById(R.id.rvBooks);
+        rvCategories = findViewById(R.id.rvCategories);
+        searchView = findViewById(R.id.searchView);
+
+        // Thiết lập RecyclerView cho sách
+        rvBooks.setLayoutManager(new LinearLayoutManager(this));
+        bookAdapter = new BookAdapter(this, new ArrayList<>(), book -> {
+            Intent intent = new Intent(MainActivity.this, BookDetailActivity.class);
+            intent.putExtra("title", book.title);
+            intent.putExtra("imageUrl", book.imageUrl);
+            intent.putExtra("price", book.price);
+            intent.putExtra("description", book.description);
+            intent.putExtra("stock", book.stock);
+            intent.putExtra("categoryName", getCategoryNameById(book.categoryId));
+            startActivity(intent);
+        });
+        rvBooks.setAdapter(bookAdapter);
+
+        // Thiết lập RecyclerView cho category (ngang)
+        rvCategories.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        categoryAdapter = new CategoryAdapter(this, categories, this::onCategoryClick);
+        rvCategories.setAdapter(categoryAdapter);
+
+        // Thiết lập Toolbar
+        setSupportActionBar(findViewById(R.id.toolbar));
+    }
+
 }
