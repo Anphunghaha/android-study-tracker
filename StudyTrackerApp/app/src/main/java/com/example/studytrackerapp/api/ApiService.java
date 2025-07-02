@@ -18,9 +18,8 @@ public interface ApiService {
     @GET("Books/search")
     Call<List<Book>> searchBooks(@Query("keyword") String keyword);
     // 🔐 Đăng nhập
-    @POST("auth/login")
-    Call<UserResponse> login(@Body LoginRequest loginRequest);
-
+    @POST("User/login")
+    Call<UserResponse> login(@Body UserLogin loginDto);
     // 🛒 Tạo đơn hàng
     @POST("orders")
     Call<Void> createOrder(@Body OrderCreate orderCreate);
@@ -39,4 +38,8 @@ public interface ApiService {
     // 📖 Lấy chi tiết sách theo id
     @GET("books/{id}")
     Call<Book> getBookById(@Path("id") int bookId);
+   // Đăng Ký
+    @POST("User/register")
+    Call<Void> registerUser(@Body UserRegister user);
+
 }

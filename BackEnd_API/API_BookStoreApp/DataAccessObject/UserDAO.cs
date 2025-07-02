@@ -36,6 +36,10 @@ namespace DataAccessObject
             _context.SaveChanges();
         }
 
+        public User? GetUserByEmail(string email)
+        {
+         return _context.Users.FirstOrDefault(d => d.Email.ToLower().Equals(email.ToLower()));
+        }
     }
 
 }

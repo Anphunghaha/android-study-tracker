@@ -18,23 +18,51 @@
         android:textColor="@android:color/black"
         android:textSize="28sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Họ tên -->
+    <EditText
+        android:id="@+id/etFullName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:hint="Họ tên"
+        android:drawableStart="@android:drawable/ic_menu_myplaces"
+        android:inputType="textPersonName"
+        android:padding="12dp"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Tên người dùng -->
+    <EditText
+        android:id="@+id/etUsername"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="Tên người dùng"
+        android:drawableStart="@android:drawable/ic_menu_edit"
+        android:inputType="text"
+        android:padding="12dp"
+        app:layout_constraintTop_toBottomOf="@id/etFullName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Email -->
     <EditText
         android:id="@+id/etEmail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:drawableStart="@android:drawable/ic_dialog_email"
         android:hint="Email"
         android:inputType="textEmailAddress"
         android:padding="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etUsername"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Mật khẩu -->
     <EditText
@@ -46,13 +74,13 @@
         android:hint="Mật khẩu"
         android:inputType="textPassword"
         android:padding="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etEmail"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/etEmail" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Xác nhận mật khẩu -->
     <EditText
-        android:id="@+id/RePassword"
+        android:id="@+id/etConfirmPassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -60,9 +88,9 @@
         android:hint="Xác nhận Mật khẩu"
         android:inputType="textPassword"
         android:padding="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etPassword"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/etPassword" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Nút đăng ký -->
     <Button
@@ -73,11 +101,10 @@
         android:backgroundTint="#6200EE"
         android:text="Đăng Ký"
         android:textColor="@android:color/white"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etConfirmPassword"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/RePassword" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Gợi ý chuyển sang đăng nhập -->
     <!-- Gợi ý chuyển sang đăng nhập -->
     <TextView
         android:id="@+id/tvLoginHint"
@@ -86,17 +113,26 @@
         android:layout_marginTop="16dp"
         android:clickable="true"
         android:focusable="true"
-        android:minWidth="48dp"
         android:minHeight="48dp"
-        android:paddingStart="12dp"
-        android:paddingTop="12dp"
-        android:paddingEnd="12dp"
-        android:paddingBottom="12dp"
         android:text="Bạn đã có tài khoản? Đăng Nhập"
         android:textColor="#0000EE"
         android:textSize="14sp"
-        app:layout_constraintTop_toBottomOf="@id/btnRegiste"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/btnRegiste" />
+    <!-- Thông báo lỗi -->
+    <TextView
+        android:id="@+id/tvMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#B00020"
+        android:textSize="14sp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/tvLoginHint"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingTop="8dp"
+        />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -50,7 +50,6 @@ namespace BookStoreAppAPI.Controllers
         }
         // POST: api/book
         [HttpPost]
-        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> AddBook([FromBody] BookDto book)
         {
             try
@@ -64,7 +63,6 @@ namespace BookStoreAppAPI.Controllers
             }
         }
         [HttpPut("{id}")]
-        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> UpdateBook(int id, [FromBody] BookDto book)
         {
             if (id != book.BookID)
@@ -82,7 +80,6 @@ namespace BookStoreAppAPI.Controllers
         }
         // DELETE: api/book/{id}
         [HttpDelete("{id}")]
-        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> DeleteBook(int id)
         {
             try

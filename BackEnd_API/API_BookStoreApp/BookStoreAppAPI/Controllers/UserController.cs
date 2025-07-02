@@ -20,16 +20,36 @@ namespace BookStoreAppAPI.Controllers
         [HttpPost("login")]
         public IActionResult Login([FromBody] UserLoginDto loginDto)
         {
-            var token = _userService.Authenticate(loginDto);
-            return Ok(new { Token = token });
+            try
+            {
+                var user = _userService.Authenticate(loginDto);
+                return Ok(user); // trả về thông tin user dạng DTO
+            }
+            catch (Exception ex)
+            {
+                return Unauthorized(new { message = ex.Message });
+            }
         }
 
+
         [HttpGet("{id}")]
-        [Authorize(Roles = "Customer,Admin")]
         public IActionResult GetUser(int id)
         {
             var user = _userService.GetById(id);
             return Ok(user);
         }
+
+        [HttpPost("register")]
+        public IActionResult Register([FromBody] UserRegisterDTO userDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState); // lỗi xác nhận sẽ nằm ở đây
+            }
+
+            _userService.Register(userDto); // chỉ cần dùng Password, bỏ qua ConfirmPassword
+            return Ok(new { message = "Đăng ký thành công" });
+        }
+
     }
 }

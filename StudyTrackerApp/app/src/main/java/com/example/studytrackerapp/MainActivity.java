@@ -1,28 +1,27 @@
 package com.example.studytrackerapp;
 
 import android.content.Intent;
-import android.os.Bundle;
-
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.SearchView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.studytrackerapp.Models.Author;
+import com.example.studytrackerapp.Models.Book;
 import com.example.studytrackerapp.Models.Category;
 import com.example.studytrackerapp.apdapters.BookAdapter;
 import com.example.studytrackerapp.apdapters.CategoryAdapter;
 import com.example.studytrackerapp.api.ApiClient;
 import com.example.studytrackerapp.api.ApiService;
-import com.example.studytrackerapp.Models.Book;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,11 +30,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.widget.Toast;
-
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView rvBooks;
@@ -43,71 +37,152 @@ public class MainActivity extends AppCompatActivity {
     private SearchView searchView;
     private BookAdapter bookAdapter;
     private CategoryAdapter categoryAdapter;
-    private List<Book> allBooks = new ArrayList<>(); // danh sách gốc để tìm kiếm
+    private List<Book> allBooks = new ArrayList<>();
     private List<Category> categories = new ArrayList<>();
     private List<Author> authors = new ArrayList<>();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setSupportActionBar(findViewById(R.id.toolbar));
+        TextView tvWelcome = findViewById(R.id.tvWelcome);
+        SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+        boolean isLoggedIn = prefs.getBoolean("isLoggedIn", false);
+
+        if (isLoggedIn) {
+            String fullName = prefs.getString("fullName", "User");
+            tvWelcome.setText("Hello, " + fullName);
+            tvWelcome.setVisibility(View.VISIBLE);
+        } else {
+            tvWelcome.setVisibility(View.GONE);
+        }
+        initViews();
+        setupSearch();
+
+        loadBooks();
+        loadCategories();
+        loadAuthors();
+
+        new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(() -> {
+            loadBooks();
+            loadCategories();
+            loadAuthors();
+        }, 300);
+    }
+
+    private void initViews() {
         rvBooks = findViewById(R.id.rvBooks);
         rvCategories = findViewById(R.id.rvCategories);
         searchView = findViewById(R.id.searchView);
 
-        // Set layout cho RecyclerView cho sách
         rvBooks.setLayoutManager(new LinearLayoutManager(this));
         bookAdapter = new BookAdapter(this, new ArrayList<>(), book -> {
             Intent intent = new Intent(MainActivity.this, BookDetailActivity.class);
             intent.putExtra("title", book.title);
             intent.putExtra("imageUrl", book.imageUrl);
             intent.putExtra("price", book.price);
-            intent.putExtra("description", book.description); // nếu có mô tả
+            intent.putExtra("description", book.description);
             intent.putExtra("stock", book.stock);
             intent.putExtra("categoryName", getCategoryNameById(book.categoryId));
             startActivity(intent);
-        });        rvBooks.setAdapter(bookAdapter);
+        });
+        rvBooks.setAdapter(bookAdapter);
 
-        // Cài đặt RecyclerView cho category (ngang)
         rvCategories.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         categoryAdapter = new CategoryAdapter(this, categories, this::onCategoryClick);
         rvCategories.setAdapter(categoryAdapter);
-        initViews();       // Setup RecyclerView, SearchView, v.v.
-        setupSearch();     // Setup listener search
-        // Gọi API lấy danh sách sách
-        loadBooks();
-        loadCategories();
-        loadAuthors();
-        // Xử lý tìm kiếm
-        setupSearch();
-        // ⚠️ Delay API calls to avoid ANR
-        new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(() -> {
-            loadBooks();
-            loadCategories();
-            loadAuthors();
-        }, 300); // Delay 300ms
     }
+
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.menu_main, menu);
+//
+//        SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+//        boolean isLoggedIn = prefs.getBoolean("isLoggedIn", false);
+//
+//        MenuItem loginItem = menu.findItem(R.id.menu_login);
+//        MenuItem logoutItem = menu.findItem(R.id.menu_logout);
+//
+//        if (isLoggedIn) {
+//            String fullName = prefs.getString("fullName", "User");
+//            logoutItem.setTitle("Hello, " + fullName);
+//            logoutItem.setVisible(true);
+//            loginItem.setVisible(false);
+//        } else {
+//            logoutItem.setVisible(false);
+//            loginItem.setVisible(true);
+//        }
+//
+//        return true;
+//    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+        return true; // KHÔNG xử lý login/logout ở đây
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        invalidateOptionsMenu(); // ⚠️ Bắt hệ thống gọi lại onCreateOptionsMenu
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE); // ✅ dùng đúng key
+        boolean isLoggedIn = prefs.getBoolean("isLoggedIn", false);
+
+        MenuItem loginItem = menu.findItem(R.id.menu_login);
+        MenuItem logoutItem = menu.findItem(R.id.menu_logout);
+
+        if (isLoggedIn) {
+            String name = prefs.getString("username", "User");
+            logoutItem.setVisible(true);
+            logoutItem.setTitle("Hello, " + name); // ✅ hiện tên user ở đây
+            loginItem.setVisible(false);
+            Log.d("DEBUG_MENU", "isLoggedIn: " + isLoggedIn);
+            Log.d("DEBUG_MENU", "fullName: " + name);
+
+        } else {
+            logoutItem.setVisible(false);
+            loginItem.setVisible(true);
+        }
+
+        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+
         if (id == R.id.menu_cart) {
             Toast.makeText(this, "Giỏ hàng được nhấn", Toast.LENGTH_SHORT).show();
             return true;
         } else if (id == R.id.menu_login) {
-            Intent intent = new Intent(this, LoginMainActivity.class);
-            startActivity(intent);
+            startActivity(new Intent(this, LoginMainActivity.class));
+            return true;
+        } else if (id == R.id.menu_logout) {
+            // Clear session
+            SharedPreferences.Editor editor = getSharedPreferences("UserPrefs", MODE_PRIVATE).edit();
+            editor.clear();
+            editor.apply();
+
+            Toast.makeText(this, "Đã đăng xuất", Toast.LENGTH_SHORT).show();
+            // Ẩn TextView Hello
+            TextView tvWelcome = findViewById(R.id.tvWelcome);
+            tvWelcome.setVisibility(View.GONE);
+
+            Toast.makeText(this, "Đã đăng xuất", Toast.LENGTH_SHORT).show();
+            invalidateOptionsMenu(); // Gọi lại menu để cập nhật
             return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
+
 
     private void loadBooks() {
         ApiService apiService = ApiClient.getClient().create(ApiService.class);
@@ -116,7 +191,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<List<Book>> call, Response<List<Book>> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     allBooks = response.body();
-                    bookAdapter.setBooks(allBooks); // hiển thị lên RecyclerView
+                    bookAdapter.setBooks(allBooks);
                 } else {
                     Log.e("API", "Không nhận được dữ liệu");
                 }
@@ -128,6 +203,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     private void loadCategories() {
         ApiService apiService = ApiClient.getClient().create(ApiService.class);
         apiService.getAllCategories().enqueue(new Callback<List<Category>>() {
@@ -144,23 +220,16 @@ public class MainActivity extends AppCompatActivity {
                     Log.d("API", "Tải danh sách category thành công: " + categories.size());
                 } else {
                     Log.e("API", "Lỗi tải category: HTTP " + response.code() + " " + response.message());
-                    try {
-                        if (response.errorBody() != null) {
-                            Log.e("API", "Chi tiết lỗi: " + response.errorBody().string());
-                        }
-                    } catch (Exception e) {
-                        Log.e("API", "Không thể đọc errorBody: " + e.getMessage());
-                    }
                 }
             }
 
             @Override
             public void onFailure(Call<List<Category>> call, Throwable t) {
                 Log.e("API", "Lỗi kết nối API khi tải category: " + t.toString());
-                Log.e("API", "Nguyên nhân: ", t);
             }
         });
     }
+
     private void loadAuthors() {
         ApiService apiService = ApiClient.getClient().create(ApiService.class);
         apiService.getAllAuthors().enqueue(new Callback<List<Author>>() {
@@ -181,36 +250,17 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public String getCategoryNameById(int categoryId) {
-        for (Category category : categories) {
-            if (category.getId() == categoryId) {
-                return category.getName();
-            }
-        }
-        return "Không rõ";
-    }
-    public String getAuthorNameById(int authorId) {
-        for (Author author : authors) {
-            if (author.authorId == authorId) {
-                return author.name;
-            }
-        }
-        return "Không rõ tác giả";
-    }
     private void setupSearch() {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                // Gọi API tìm kiếm khi nhấn enter
                 searchBooks(query);
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                // Gọi API tìm kiếm khi text thay đổi
                 if (newText.isEmpty()) {
-                    // Nếu không có từ khóa, hiển thị lại danh sách gốc
                     bookAdapter.setBooks(allBooks);
                 } else {
                     searchBooks(newText);
@@ -219,6 +269,26 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void searchBooks(String keyword) {
+        ApiService apiService = ApiClient.getClient().create(ApiService.class);
+        apiService.searchBooks(keyword).enqueue(new Callback<List<Book>>() {
+            @Override
+            public void onResponse(Call<List<Book>> call, Response<List<Book>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    bookAdapter.setBooks(response.body());
+                } else {
+                    bookAdapter.setBooks(new ArrayList<>());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Book>> call, Throwable t) {
+                bookAdapter.setBooks(new ArrayList<>());
+            }
+        });
+    }
+
     private void onCategoryClick(Category category) {
         if (category.getId() == 0) {
             bookAdapter.setBooks(allBooks);
@@ -226,81 +296,37 @@ public class MainActivity extends AppCompatActivity {
             getBooksByCategory(category.getId());
         }
     }
-    private void searchBooks(String keyword) {
-        ApiService apiService = ApiClient.getClient().create(ApiService.class);
-        apiService.searchBooks(keyword).enqueue(new Callback<List<Book>>() {
-            @Override
-            public void onResponse(Call<List<Book>> call, Response<List<Book>> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    List<Book> filteredBooks = response.body();
-                    bookAdapter.setBooks(filteredBooks); // Cập nhật RecyclerView với kết quả tìm kiếm
-                } else {
-                    Log.e("API", "Không nhận được dữ liệu tìm kiếm");
-                    bookAdapter.setBooks(new ArrayList<>()); // Xóa danh sách nếu không có kết quả
-                }
-            }
 
-            @Override
-            public void onFailure(Call<List<Book>> call, Throwable t) {
-                Log.e("API", "Lỗi kết nối API khi tìm kiếm: " + t.getMessage());
-                bookAdapter.setBooks(new ArrayList<>()); // Xóa danh sách nếu lỗi
-            }
-        });
-    }
     private void getBooksByCategory(int categoryId) {
         ApiService apiService = ApiClient.getClient().create(ApiService.class);
         apiService.getBooksByCategory(categoryId).enqueue(new Callback<List<Book>>() {
             @Override
             public void onResponse(Call<List<Book>> call, Response<List<Book>> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    List<Book> books = response.body();
-                    bookAdapter.setBooks(books);
-                    Log.d("API", "Lấy sách theo category ID " + categoryId + " thành công: " + books.size());
+                    bookAdapter.setBooks(response.body());
                 } else {
-                    Log.e("API", "Lỗi lấy sách theo category: HTTP " + response.code() + " " + response.message());
                     bookAdapter.setBooks(new ArrayList<>());
                 }
-            }
-            private String getCategoryNameById(int categoryId) {
-                for (Category category : categories) {
-                    if (category.getId() == categoryId) return category.getName();
-                }
-                return "Không rõ";
             }
 
             @Override
             public void onFailure(Call<List<Book>> call, Throwable t) {
-                Log.e("API", "Lỗi kết nối API khi lấy sách theo category: " + t.getMessage());
                 bookAdapter.setBooks(new ArrayList<>());
             }
         });
     }
-    private void initViews() {
-        rvBooks = findViewById(R.id.rvBooks);
-        rvCategories = findViewById(R.id.rvCategories);
-        searchView = findViewById(R.id.searchView);
 
-        // Thiết lập RecyclerView cho sách
-        rvBooks.setLayoutManager(new LinearLayoutManager(this));
-        bookAdapter = new BookAdapter(this, new ArrayList<>(), book -> {
-            Intent intent = new Intent(MainActivity.this, BookDetailActivity.class);
-            intent.putExtra("title", book.title);
-            intent.putExtra("imageUrl", book.imageUrl);
-            intent.putExtra("price", book.price);
-            intent.putExtra("description", book.description);
-            intent.putExtra("stock", book.stock);
-            intent.putExtra("categoryName", getCategoryNameById(book.categoryId));
-            startActivity(intent);
-        });
-        rvBooks.setAdapter(bookAdapter);
-
-        // Thiết lập RecyclerView cho category (ngang)
-        rvCategories.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        categoryAdapter = new CategoryAdapter(this, categories, this::onCategoryClick);
-        rvCategories.setAdapter(categoryAdapter);
-
-        // Thiết lập Toolbar
-        setSupportActionBar(findViewById(R.id.toolbar));
+    public String getCategoryNameById(int categoryId) {
+        for (Category category : categories) {
+            if (category.getId() == categoryId) return category.getName();
+        }
+        return "Không rõ";
     }
 
+    public String getAuthorNameById(int authorId) {
+        for (Author author : authors) {
+            if (author.authorId == authorId) return author.name;
+        }
+        return "Không rõ tác giả";
+    }
 }

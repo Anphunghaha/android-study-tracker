@@ -1,4 +1,5 @@
-﻿using DataAccessObject;
+﻿using BusinessObject.Models;
+using DataAccessObject;
 using DTOs.DTO;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -23,33 +24,49 @@ namespace Services.Implement
             _configuration = configuration;
         }
 
-        public string Authenticate(UserLoginDto loginDto)
+        //public string Authenticate(UserLoginDto loginDto)
+        //{
+        //    var user = _userDAO.ValidateUser(loginDto.Email, loginDto.Password);
+        //    if (user == null) throw new Exception("Invalid credentials");
+        //    // khởi tạo 1 đối tượng giúp xử lý JWT
+        //    var tokenHandler = new JwtSecurityTokenHandler();
+        //    // khóa bí mật rồi chuyển thành mảng byte
+        //    var key = Encoding.ASCII.GetBytes(_configuration["Jwt:Key"]);
+        //    // mô tả nội dung của 1 JWT token
+        //    var tokenDescriptor = new SecurityTokenDescriptor
+        //    {
+        //        // một đối tượng đại diện cho danh tính người dùng
+        //        Subject = new ClaimsIdentity(new[]
+        //        {
+        //            // 1 cliam là 1 mẩu thông tin gắn với người dùng
+        //        new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
+        //        new Claim(ClaimTypes.Name, user.Username),
+        //        new Claim(ClaimTypes.Role, user.Role ?? "User"),
+        //        new Claim("UserID", user.UserId.ToString()),
+
+        //    }),
+        //        Expires = DateTime.UtcNow.AddDays(1),
+        //        SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+        //    };
+        //    var token = tokenHandler.CreateToken(tokenDescriptor);
+        //    return tokenHandler.WriteToken(token);
+        //}
+
+        public UserResponseDto Authenticate(UserLoginDto loginDto)
         {
             var user = _userDAO.ValidateUser(loginDto.Email, loginDto.Password);
-            if (user == null) throw new Exception("Invalid credentials");
-            // khởi tạo 1 đối tượng giúp xử lý JWT
-            var tokenHandler = new JwtSecurityTokenHandler();
-            // khóa bí mật rồi chuyển thành mảng byte
-            var key = Encoding.ASCII.GetBytes(_configuration["Jwt:Key"]);
-            // mô tả nội dung của 1 JWT token
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                // một đối tượng đại diện cho danh tính người dùng
-                Subject = new ClaimsIdentity(new[]
-                {
-                    // 1 cliam là 1 mẩu thông tin gắn với người dùng
-                new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
-                new Claim(ClaimTypes.Name, user.Username),
-                new Claim(ClaimTypes.Role, user.Role ?? "User"),
-                new Claim("UserID", user.UserId.ToString()),
+            if (user == null) throw new Exception("Sai tài khoản hoặc mật khẩu");
 
-            }),
-                Expires = DateTime.UtcNow.AddDays(1),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            return new UserResponseDto
+            {
+                UserId = user.UserId,
+                Username = user.Username,
+                FullName = user.FullName,
+                Email = user.Email,
+                Role = user.Role
             };
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-            return tokenHandler.WriteToken(token);
         }
+
 
         public UserResponseDto GetById(int id)
         {
@@ -64,6 +81,25 @@ namespace Services.Implement
                 Email = user.Email,
                 Role = user.Role
             };
+        }
+        public void Register(UserRegisterDTO userDto)
+        {
+            // Optional: check if email already exists
+            if (_userDAO.GetUserByEmail(userDto.Email) != null)
+            {
+                throw new Exception("Email already exists");
+            }
+
+            var user = new User
+            {
+                FullName = userDto.FullName,
+                Email = userDto.Email,
+                Password = userDto.Password, // Optional: hash password here
+                Username=userDto.Username,
+                Role = "Customer"
+            };
+
+            _userDAO.AddUser(user);
         }
     }
 }

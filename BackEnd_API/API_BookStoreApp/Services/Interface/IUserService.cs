@@ -9,7 +9,8 @@ namespace Services.Interface
 {
     public interface IUserService
     {
-        string Authenticate(UserLoginDto loginDto);
+        UserResponseDto Authenticate(UserLoginDto loginDto);
         UserResponseDto GetById(int id);
+        void Register(UserRegisterDTO userDto);
     }
 }
