@@ -3,6 +3,18 @@
   "WorkspaceRootPath": "E:\\Tailieuhoc\\ProjectAll\\ProjectPRM\\android-study-tracker\\BackEnd_API\\API_BookStoreApp\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{56CC200B-5C7A-45AF-A5D4-D4BEB8649A7F}|Services\\Services.csproj|e:\\tailieuhoc\\projectall\\projectprm\\android-study-tracker\\backend_api\\api_bookstoreapp\\services\\implement\\bookservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{56CC200B-5C7A-45AF-A5D4-D4BEB8649A7F}|Services\\Services.csproj|solutionrelative:services\\implement\\bookservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B5D33B6-FE31-474C-A543-1105E6735A16}|DataAccessObject\\DataAccessObject.csproj|e:\\tailieuhoc\\projectall\\projectprm\\android-study-tracker\\backend_api\\api_bookstoreapp\\dataaccessobject\\categorydao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9B5D33B6-FE31-474C-A543-1105E6735A16}|DataAccessObject\\DataAccessObject.csproj|solutionrelative:dataaccessobject\\categorydao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B5D33B6-FE31-474C-A543-1105E6735A16}|DataAccessObject\\DataAccessObject.csproj|e:\\tailieuhoc\\projectall\\projectprm\\android-study-tracker\\backend_api\\api_bookstoreapp\\dataaccessobject\\bookdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9B5D33B6-FE31-474C-A543-1105E6735A16}|DataAccessObject\\DataAccessObject.csproj|solutionrelative:dataaccessobject\\bookdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{56CC200B-5C7A-45AF-A5D4-D4BEB8649A7F}|Services\\Services.csproj|e:\\tailieuhoc\\projectall\\projectprm\\android-study-tracker\\backend_api\\api_bookstoreapp\\services\\implement\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{56CC200B-5C7A-45AF-A5D4-D4BEB8649A7F}|Services\\Services.csproj|solutionrelative:services\\implement\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -42,11 +54,50 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
+              "Title": "BookService.cs",
+              "DocumentMoniker": "E:\\Tailieuhoc\\ProjectAll\\ProjectPRM\\android-study-tracker\\BackEnd_API\\API_BookStoreApp\\Services\\Implement\\BookService.cs",
+              "RelativeDocumentMoniker": "Services\\Implement\\BookService.cs",
+              "ToolTip": "E:\\Tailieuhoc\\ProjectAll\\ProjectPRM\\android-study-tracker\\BackEnd_API\\API_BookStoreApp\\Services\\Implement\\BookService.cs",
+              "RelativeToolTip": "Services\\Implement\\BookService.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-02T01:31:22.114Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CategoryDAO.cs",
+              "DocumentMoniker": "E:\\Tailieuhoc\\ProjectAll\\ProjectPRM\\android-study-tracker\\BackEnd_API\\API_BookStoreApp\\DataAccessObject\\CategoryDAO.cs",
+              "RelativeDocumentMoniker": "DataAccessObject\\CategoryDAO.cs",
+              "ToolTip": "E:\\Tailieuhoc\\ProjectAll\\ProjectPRM\\android-study-tracker\\BackEnd_API\\API_BookStoreApp\\DataAccessObject\\CategoryDAO.cs",
+              "RelativeToolTip": "DataAccessObject\\CategoryDAO.cs",
+              "ViewState": "AgIAADUAAAAAAAAAAAAswAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-02T01:31:13.479Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BookDAO.cs",
+              "DocumentMoniker": "E:\\Tailieuhoc\\ProjectAll\\ProjectPRM\\android-study-tracker\\BackEnd_API\\API_BookStoreApp\\DataAccessObject\\BookDAO.cs",
+              "RelativeDocumentMoniker": "DataAccessObject\\BookDAO.cs",
+              "ToolTip": "E:\\Tailieuhoc\\ProjectAll\\ProjectPRM\\android-study-tracker\\BackEnd_API\\API_BookStoreApp\\DataAccessObject\\BookDAO.cs",
+              "RelativeToolTip": "DataAccessObject\\BookDAO.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwBAAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-02T01:30:54.232Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "AuthorController.cs",
               "DocumentMoniker": "E:\\Tailieuhoc\\ProjectAll\\ProjectPRM\\android-study-tracker\\BackEnd_API\\API_BookStoreApp\\BookStoreAppAPI\\Controllers\\AuthorController.cs",
               "RelativeDocumentMoniker": "BookStoreAppAPI\\Controllers\\AuthorController.cs",
@@ -58,7 +109,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
               "Title": "User.cs",
               "DocumentMoniker": "E:\\Tailieuhoc\\ProjectAll\\ProjectPRM\\android-study-tracker\\BackEnd_API\\API_BookStoreApp\\BusinessObject\\Models\\User.cs",
               "RelativeDocumentMoniker": "BusinessObject\\Models\\User.cs",
@@ -70,7 +121,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "UserRegisterDTO.cs",
               "DocumentMoniker": "E:\\Tailieuhoc\\ProjectAll\\ProjectPRM\\android-study-tracker\\BackEnd_API\\API_BookStoreApp\\DTOs\\DTO\\UserRegisterDTO.cs",
               "RelativeDocumentMoniker": "DTOs\\DTO\\UserRegisterDTO.cs",
@@ -82,7 +133,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "UserDAO.cs",
               "DocumentMoniker": "E:\\Tailieuhoc\\ProjectAll\\ProjectPRM\\android-study-tracker\\BackEnd_API\\API_BookStoreApp\\DataAccessObject\\UserDAO.cs",
               "RelativeDocumentMoniker": "DataAccessObject\\UserDAO.cs",
@@ -94,7 +145,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 10,
               "Title": "BooksController.cs",
               "DocumentMoniker": "E:\\Tailieuhoc\\ProjectAll\\ProjectPRM\\android-study-tracker\\BackEnd_API\\API_BookStoreApp\\BookStoreAppAPI\\Controllers\\BooksController.cs",
               "RelativeDocumentMoniker": "BookStoreAppAPI\\Controllers\\BooksController.cs",
@@ -106,7 +157,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "IUserService.cs",
               "DocumentMoniker": "E:\\Tailieuhoc\\ProjectAll\\ProjectPRM\\android-study-tracker\\BackEnd_API\\API_BookStoreApp\\Services\\Interface\\IUserService.cs",
               "RelativeDocumentMoniker": "Services\\Interface\\IUserService.cs",
@@ -118,7 +169,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "UserService.cs",
               "DocumentMoniker": "E:\\Tailieuhoc\\ProjectAll\\ProjectPRM\\android-study-tracker\\BackEnd_API\\API_BookStoreApp\\Services\\Implement\\UserService.cs",
               "RelativeDocumentMoniker": "Services\\Implement\\UserService.cs",
@@ -131,7 +182,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "UserController.cs",
               "DocumentMoniker": "E:\\Tailieuhoc\\ProjectAll\\ProjectPRM\\android-study-tracker\\BackEnd_API\\API_BookStoreApp\\BookStoreAppAPI\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "BookStoreAppAPI\\Controllers\\UserController.cs",
