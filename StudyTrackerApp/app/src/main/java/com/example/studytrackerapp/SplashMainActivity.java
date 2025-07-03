@@ -3,6 +3,7 @@ package com.example.studytrackerapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,10 +23,11 @@ public class SplashMainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        new Handler().postDelayed(() -> {
-            Intent intent = new Intent(SplashMainActivity.this, MainActivity.class);
-            startActivity(intent);
-            finish(); // Kết thúc Splash để không quay lại được nữa
-        }, 2500); // 2.5 giây
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+            // Chuyển sang màn hình chính sau 2 giây
+            startActivity(new Intent(SplashMainActivity.this, MainActivity.class));
+            finish();
+        }, 2000); // 2 giây
+ // 2.5 giây
     }
 }

@@ -2,19 +2,25 @@ package com.example.studytrackerapp.apdapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.studytrackerapp.BookDetailActivity;
+import com.example.studytrackerapp.LoginMainActivity;
 import com.example.studytrackerapp.MainActivity;
+import com.example.studytrackerapp.Models.CartItem;
+import com.example.studytrackerapp.Models.CartManager;
 import com.example.studytrackerapp.R;
 import com.example.studytrackerapp.Models.Book;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
@@ -68,6 +74,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
         // Xử lý nút "Chi tiết"
         holder.btnDetail.setOnClickListener(v -> {
             Intent intent = new Intent(context, BookDetailActivity.class);
+            intent.putExtra("bookId", book.bookID); // ✅ THÊM DÒNG NÀY
             intent.putExtra("title", book.title);
             intent.putExtra("price", book.price);
             intent.putExtra("description", book.description);
@@ -86,6 +93,26 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
 
             context.startActivity(intent);
         });
+        // Xử lý nút "Add to Cart"
+        holder.btnAddToCart.setOnClickListener(v -> {
+            // Kiểm tra SharedPreferences để xem đã login chưa
+            SharedPreferences prefs = context.getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
+            boolean isLoggedIn = prefs.getBoolean("isLoggedIn", false);
+
+            if (!isLoggedIn) {
+                Toast.makeText(context, "Vui lòng đăng nhập trước khi thêm vào giỏ", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, LoginMainActivity.class);
+                context.startActivity(intent);
+                return;
+            }
+
+            // Nếu đã login thì mới được thêm
+            CartManager.getInstance().addToCart(book);
+
+            Snackbar.make(holder.itemView, "Đã thêm vào giỏ", Snackbar.LENGTH_SHORT).show();
+        });
+
+
     }
 
     @Override
@@ -97,7 +124,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
     public static class BookViewHolder extends RecyclerView.ViewHolder {
         ImageView ivCover;
         TextView tvTitle, tvPrice;
-        Button btnDetail;
+        Button btnDetail, btnAddToCart;
 
         public BookViewHolder(View itemView) {
             super(itemView);
@@ -105,6 +132,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
             tvTitle = itemView.findViewById(R.id.tvBookTitle);
             tvPrice = itemView.findViewById(R.id.tvBookPrice);
             btnDetail = itemView.findViewById(R.id.btnDetail); // ánh xạ nút
+            btnAddToCart = itemView.findViewById(R.id.btnAddToCart);
         }
     }
 }

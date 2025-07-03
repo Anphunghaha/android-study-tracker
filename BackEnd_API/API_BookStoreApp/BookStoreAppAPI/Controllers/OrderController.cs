@@ -16,7 +16,6 @@ namespace BookStoreAppAPI.Controllers
             _orderService = orderService;
         }
         [HttpPost("create")]
-        [Authorize(Roles = "Customer")]
         public async Task<IActionResult> CreateOrder([FromBody] OrderCreateDTO request)
         {
             var result = await _orderService.CreateOrderAsync(request);

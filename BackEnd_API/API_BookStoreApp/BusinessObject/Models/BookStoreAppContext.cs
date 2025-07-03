@@ -95,7 +95,14 @@ public partial class BookStoreAppContext : DbContext
                 .HasColumnType("datetime");
             entity.Property(e => e.TotalAmount).HasColumnType("decimal(18, 2)");
             entity.Property(e => e.UserId).HasColumnName("UserID");
+           
+            entity.Property(e => e.ShippingAddress)
+            .HasMaxLength(255)
+            .IsUnicode(); // hoặc .IsUnicode(false) nếu là varchar
 
+            entity.Property(e => e.Status)
+                .HasMaxLength(50)
+                .IsUnicode();
             entity.HasOne(d => d.User).WithMany(p => p.Orders)
                 .HasForeignKey(d => d.UserId)
                 .OnDelete(DeleteBehavior.ClientSetNull)

@@ -30,6 +30,8 @@ namespace Services.Implement
                 UserId = request.UserId,
                 OrderDate = DateTime.UtcNow,
                 TotalAmount = 0, // sẽ tính sau
+                ShippingAddress = request.ShippingAddress,
+                Status = string.IsNullOrEmpty(request.Status) ? "Chưa thanh toán" : request.Status
             };
 
             // Tạo danh sách OrderItems từ DTO

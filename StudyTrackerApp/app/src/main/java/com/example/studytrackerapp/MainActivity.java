@@ -22,6 +22,7 @@ import com.example.studytrackerapp.apdapters.BookAdapter;
 import com.example.studytrackerapp.apdapters.CategoryAdapter;
 import com.example.studytrackerapp.api.ApiClient;
 import com.example.studytrackerapp.api.ApiService;
+import com.example.studytrackerapp.ui.theme.CartActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -128,6 +129,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         invalidateOptionsMenu(); // ⚠️ Bắt hệ thống gọi lại onCreateOptionsMenu
+        if (getIntent().getBooleanExtra("refresh", false)) {
+            loadBooks(); // gọi lại API để cập nhật số lượng sách
+            getIntent().removeExtra("refresh"); // tránh load lại nếu người dùng quay lại lần nữa
+        }
     }
 
     @Override
@@ -159,9 +164,22 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.menu_cart) {
-            Toast.makeText(this, "Giỏ hàng được nhấn", Toast.LENGTH_SHORT).show();
+            SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+            boolean isLoggedIn = prefs.getBoolean("isLoggedIn", false);
+
+            if (isLoggedIn) {
+                // Đã đăng nhập → mở giỏ hàng
+                Intent intent = new Intent(this, CartActivity.class);
+                startActivity(intent);
+            } else {
+                // Chưa đăng nhập → chuyển sang trang Login
+                Intent loginIntent = new Intent(this, LoginMainActivity.class);
+                startActivity(loginIntent);
+            }
+
             return true;
-        } else if (id == R.id.menu_login) {
+        }
+        else if (id == R.id.menu_login) {
             startActivity(new Intent(this, LoginMainActivity.class));
             return true;
         } else if (id == R.id.menu_logout) {

@@ -12,6 +12,8 @@ public partial class Order
     public DateTime? OrderDate { get; set; }
 
     public decimal? TotalAmount { get; set; }
+    public string? ShippingAddress { get; set; }  // ✅ thêm dòng này
+    public string? Status { get; set; }
 
     public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
 

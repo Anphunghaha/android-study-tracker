@@ -21,8 +21,9 @@ public interface ApiService {
     @POST("User/login")
     Call<UserResponse> login(@Body UserLogin loginDto);
     // 🛒 Tạo đơn hàng
-    @POST("orders")
-    Call<Void> createOrder(@Body OrderCreate orderCreate);
+    @POST("Order/create")
+    Call<OrderResponse> createOrder(@Body OrderCreate orderCreate);
+
     @GET("Books/BookBycategory/{categoryId}")
     Call<List<Book>> getBooksByCategory(@Path("categoryId") int categoryId);
     // 📂 Lấy danh mục

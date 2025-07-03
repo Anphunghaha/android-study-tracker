@@ -1,8 +1,13 @@
 package com.example.studytrackerapp;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.example.studytrackerapp.Models.Book; // thêm nếu chưa có
+
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -10,7 +15,13 @@ import androidx.appcompat.widget.Toolbar;
 import java.text.NumberFormat;
 import java.util.Locale;
 import android.view.MenuItem;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
+
+import com.example.studytrackerapp.Models.CartItem;
+import com.example.studytrackerapp.Models.CartManager;
+import com.google.android.material.snackbar.Snackbar;
 
 public class BookDetailActivity extends AppCompatActivity {
 
@@ -21,7 +32,9 @@ public class BookDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_book_detail);
+        Button btnAddToCart = findViewById(R.id.btnAddToCart);
 
         Toolbar toolbar = findViewById(R.id.detailToolbar);
         setSupportActionBar(toolbar);
@@ -31,6 +44,42 @@ public class BookDetailActivity extends AppCompatActivity {
 
         // Nhận và hiển thị dữ liệu
         displayData();
+        // click AddToCart
+        btnAddToCart.setOnClickListener(v -> {
+            SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+            boolean isLoggedIn = prefs.getBoolean("isLoggedIn", false);
+
+            if (!isLoggedIn) {
+                Snackbar.make(v, "Bạn cần đăng nhập để thêm vào giỏ", Snackbar.LENGTH_SHORT).show();
+                Intent loginIntent = new Intent(this, LoginMainActivity.class);
+                startActivity(loginIntent);
+                return;
+            }
+
+            // Lấy thông tin từ Intent
+            int bookId = getIntent().getIntExtra("bookId", -1);
+            String title = getIntent().getStringExtra("title");
+            double price = getIntent().getDoubleExtra("price", 0);
+            String imageUrl = getIntent().getStringExtra("imageUrl");
+            int stock = getIntent().getIntExtra("stock", 0); // 👈 LẤY STOCK
+            if (bookId == -1 || title == null) {
+                Snackbar.make(v, "Lỗi dữ liệu sách", Snackbar.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Tạo đối tượng Book từ dữ liệu nhận được
+            Book book = new Book();
+            book.setBookID(bookId);
+            book.setTitle(title);
+            book.setPrice(price);
+            book.setImageUrl(imageUrl);
+            book.setStock(stock);
+
+            CartManager.getInstance().addToCart(book);
+
+
+            Snackbar.make(v, "Đã thêm \"" + title + "\" vào giỏ hàng", Snackbar.LENGTH_SHORT).show();
+        });
     }
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {

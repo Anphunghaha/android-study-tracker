@@ -225,7 +225,7 @@
             android:text="Thêm vào giỏ hàng"
             android:textAllCaps="false"
             android:textSize="16sp"
-            android:backgroundTint="@color/purple_500"
+            android:backgroundTint="@android:color/holo_orange_dark"
             android:textColor="@color/white"/>
     </LinearLayout>
 </ScrollView>
