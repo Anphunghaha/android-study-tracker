@@ -78,6 +78,37 @@ namespace Services.Implement
                 }).ToList()
             };
         }
+        public async Task<List<OrderDTO>> GetOrdersByUserIdAsync(int userId)
+        {
+            var orders = await _orderDAO.GetOrdersByUserIdAsync(userId);
+            return orders.Select(MapToOrderDTO).ToList();
+        }
+
+        public async Task<List<OrderDTO>> GetAllOrdersAsync()
+        {
+            var orders = await _orderDAO.GetAllOrdersAsync();
+            return orders.Select(MapToOrderDTO).ToList();
+        }
+        // Helper method to map Order to DTO
+        private OrderDTO MapToOrderDTO(Order order)
+        {
+            return new OrderDTO
+            {
+                OrderId = order.OrderId,
+                OrderDate = order.OrderDate,
+                TotalAmount = order.TotalAmount,
+                ShippingAddress = order.ShippingAddress,
+                Status = order.Status,
+                Items = order.OrderItems.Select(oi => new OrderItemDTO
+                {
+                    OrderItemId = oi.OrderItemId,
+                    BookId = oi.BookId,
+                    Quantity = oi.Quantity,
+                    UnitPrice = oi.UnitPrice,
+                    BookTitle = oi.Book?.Title
+                }).ToList()
+            };
+        }
 
     }
 }

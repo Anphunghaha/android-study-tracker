@@ -355,6 +355,32 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "BookStoreAppAPI.Controllers.OrderController",
+    "Method": "GetAllOrders",
+    "RelativePath": "api/Order/GetAllOrders",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BookStoreAppAPI.Controllers.OrderController",
+    "Method": "GetOrdersByUser",
+    "RelativePath": "api/Order/GetOrderByUser/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "BookStoreAppAPI.Controllers.UserController",
     "Method": "GetUser",
     "RelativePath": "api/User/{id}",

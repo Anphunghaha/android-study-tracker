@@ -47,6 +47,25 @@ namespace DataAccessObject
 
             return order;
         }
+        public async Task<List<Order>> GetOrdersByUserIdAsync(int userId)
+        {
+            return await _context.Orders
+                .Where(o => o.UserId == userId)
+                .Include(o => o.OrderItems)
+                    .ThenInclude(oi => oi.Book)
+                .OrderByDescending(o => o.OrderDate)
+                .ToListAsync();
+        }
+        public async Task<List<Order>> GetAllOrdersAsync()
+        {
+            return await _context.Orders
+                .Include(o => o.User) // Nếu bạn có navigation tới User
+                .Include(o => o.OrderItems)
+                    .ThenInclude(oi => oi.Book)
+                .OrderByDescending(o => o.OrderDate)
+                .ToListAsync();
+        }
+
 
     }
 }

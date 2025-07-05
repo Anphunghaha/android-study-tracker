@@ -21,5 +21,35 @@ namespace BookStoreAppAPI.Controllers
             var result = await _orderService.CreateOrderAsync(request);
             return Ok(result);
         }
+        
+        // GET: api/order/user/{userId}
+        [HttpGet("GetOrderByUser/{userId}")]
+        public async Task<IActionResult> GetOrdersByUser(int userId)
+        {
+            try
+            {
+                var orders = await _orderService.GetOrdersByUserIdAsync(userId);
+                return Ok(orders);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+
+        // GET: api/order/all
+        [HttpGet("GetAllOrders")]
+        public async Task<IActionResult> GetAllOrders()
+        {
+            try
+            {
+                var orders = await _orderService.GetAllOrdersAsync();
+                return Ok(orders);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
     }
 }

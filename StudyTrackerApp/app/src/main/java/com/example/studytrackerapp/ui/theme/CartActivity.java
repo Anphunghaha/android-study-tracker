@@ -123,9 +123,10 @@ public class CartActivity extends AppCompatActivity {
             }
 
             // Gửi request lên API
-            OrderCreate order = new OrderCreate(userId, address, "Đang xử lý + Chưa thanh toán", orderItems);
+            OrderCreate order = new OrderCreate(userId, "Đang xử lý + Chưa thanh toán",address ,orderItems);
             ApiService apiService = ApiClient.getClient().create(ApiService.class);
-// 🧠 Thêm đoạn LOG để kiểm tra dữ liệu chuẩn bị gửi lên
+
+            // 🧠 Thêm đoạn LOG để kiểm tra dữ liệu chuẩn bị gửi lên
             Log.d("OrderDebug", "userId: " + userId);
             Log.d("OrderDebug", "address: " + address);
             Log.d("OrderDebug", "items count: " + orderItems.size());
