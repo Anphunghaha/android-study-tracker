@@ -33,6 +33,26 @@
             android:textSize="14sp"
             android:textColor="#666"/>
 
+        <!-- Ví dụ: Thêm vào layout item_order.xml -->
+        <TextView
+            android:id="@+id/tvShippingAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Địa chỉ giao hàng: ..."
+            android:textColor="#333"
+            android:textSize="14sp"
+            android:layout_marginTop="4dp"/>
+
+        <TextView
+            android:id="@+id/tvStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Trạng thái: ..."
+            android:textColor="#444"
+            android:textSize="14sp"
+            android:layout_marginTop="2dp"/>
+
+
         <TextView android:id="@+id/tvOrderTotal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

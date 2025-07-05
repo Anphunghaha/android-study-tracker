@@ -39,6 +39,9 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
         holder.tvOrderId.setText("Mã đơn: #" + order.orderId);
         holder.tvOrderDate.setText("Ngày: " + order.orderDate);
         holder.tvTotal.setText("Tổng tiền: " + order.totalAmount + "đ");
+        holder.tvShippingAddress.setText("Thông tin để giao hàng: " + order.shippingAddress);
+        holder.tvStatus.setText("Trạng thái: " + order.status);
+
 
         StringBuilder itemDetails = new StringBuilder();
         for (OrderItemDTO item : order.items) {
@@ -83,6 +86,9 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
         TextView tvOrderId, tvOrderDate, tvTotal, tvItems;
         ImageView imgBook;
 
+        TextView tvShippingAddress, tvStatus;
+
+
         public OrderViewHolder(@NonNull View itemView) {
             super(itemView);
             tvOrderId = itemView.findViewById(R.id.tvOrderId);
@@ -90,6 +96,9 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
             tvTotal = itemView.findViewById(R.id.tvOrderTotal);
             tvItems = itemView.findViewById(R.id.tvItems);
             imgBook = itemView.findViewById(R.id.imgBook);
+            tvShippingAddress = itemView.findViewById(R.id.tvShippingAddress);
+            tvStatus = itemView.findViewById(R.id.tvStatus);
+
         }
     }
 }
