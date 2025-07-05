@@ -22,7 +22,6 @@ import com.example.studytrackerapp.apdapters.BookAdapter;
 import com.example.studytrackerapp.apdapters.CategoryAdapter;
 import com.example.studytrackerapp.api.ApiClient;
 import com.example.studytrackerapp.api.ApiService;
-import com.example.studytrackerapp.ui.theme.CartActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,9 +54,16 @@ public class MainActivity extends AppCompatActivity {
             String fullName = prefs.getString("fullName", "User");
             tvWelcome.setText("Hello, " + fullName);
             tvWelcome.setVisibility(View.VISIBLE);
+
+            // Gắn click vào tvWelcome
+            tvWelcome.setOnClickListener(v -> {
+                Intent intent = new Intent(MainActivity.this, UserProfileActivity.class);
+                startActivity(intent);
+            });
         } else {
             tvWelcome.setVisibility(View.GONE);
         }
+
         initViews();
         setupSearch();
 
@@ -143,19 +149,20 @@ public class MainActivity extends AppCompatActivity {
         MenuItem loginItem = menu.findItem(R.id.menu_login);
         MenuItem logoutItem = menu.findItem(R.id.menu_logout);
 
-        if (isLoggedIn) {
-            String name = prefs.getString("username", "User");
-            logoutItem.setVisible(true);
-            logoutItem.setTitle("Hello, " + name); // ✅ hiện tên user ở đây
-            loginItem.setVisible(false);
-            Log.d("DEBUG_MENU", "isLoggedIn: " + isLoggedIn);
-            Log.d("DEBUG_MENU", "fullName: " + name);
-
-        } else {
-            logoutItem.setVisible(false);
-            loginItem.setVisible(true);
-        }
-
+//        if (isLoggedIn) {
+//            String name = prefs.getString("username", "User");
+//            logoutItem.setVisible(true);
+//            logoutItem.setTitle("Hello, " + name); // ✅ hiện tên user ở đây
+//            loginItem.setVisible(false);
+//            Log.d("DEBUG_MENU", "isLoggedIn: " + isLoggedIn);
+//            Log.d("DEBUG_MENU", "fullName: " + name);
+//
+//        } else {
+//            logoutItem.setVisible(false);
+//            loginItem.setVisible(true);
+//        }
+        loginItem.setVisible(!isLoggedIn);
+        logoutItem.setVisible(isLoggedIn);
         return super.onPrepareOptionsMenu(menu);
     }
 

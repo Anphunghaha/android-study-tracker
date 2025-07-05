@@ -105,7 +105,8 @@ namespace Services.Implement
                     BookId = oi.BookId,
                     Quantity = oi.Quantity,
                     UnitPrice = oi.UnitPrice,
-                    BookTitle = oi.Book?.Title
+                    BookTitle = oi.Book?.Title,
+                    ImgUrl = oi.Book?.ImageUrl,
                 }).ToList()
             };
         }

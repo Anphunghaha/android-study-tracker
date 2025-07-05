@@ -24,6 +24,9 @@ public interface ApiService {
     @POST("Order/create")
     Call<OrderResponse> createOrder(@Body OrderCreate orderCreate);
 
+    @GET("Order/GetOrderByUser/{userId}")
+    Call<List<OrderDTO>> getOrdersByUser(@Path("userId") int userId);
+
     @GET("Books/BookBycategory/{categoryId}")
     Call<List<Book>> getBooksByCategory(@Path("categoryId") int categoryId);
     // 📂 Lấy danh mục

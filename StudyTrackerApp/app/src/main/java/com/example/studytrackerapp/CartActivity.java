@@ -1,4 +1,4 @@
-package com.example.studytrackerapp.ui.theme;
+package com.example.studytrackerapp;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,7 +9,6 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,13 +18,11 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.studytrackerapp.MainActivity;
 import com.example.studytrackerapp.Models.CartItem;
 import com.example.studytrackerapp.Models.CartManager;
 import com.example.studytrackerapp.Models.OrderCreate;
 import com.example.studytrackerapp.Models.OrderItemCreate;
 import com.example.studytrackerapp.Models.OrderResponse;
-import com.example.studytrackerapp.R;
 import com.example.studytrackerapp.apdapters.CartAdapter;
 import com.example.studytrackerapp.api.ApiClient;
 import com.example.studytrackerapp.api.ApiService;

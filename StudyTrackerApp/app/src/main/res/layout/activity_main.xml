@@ -27,7 +27,11 @@
                 android:textColor="@android:color/white"
                 android:layout_gravity="start|center_vertical"
                 android:paddingStart="16dp"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"/>
+
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 

@@ -24,5 +24,7 @@ namespace DTOs.DTO
         public string BookTitle { get; set; } // Thêm để hiển thị tên sách
         public int Quantity { get; set; }
         public decimal UnitPrice { get; set; }
+        public string ImgUrl { get; set; } // ✅ Thêm dòng này
+
     }
 }

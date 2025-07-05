@@ -1,12 +1,105 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "E:\\Tailieuhoc\\ProjectAll\\ProjectPRM\\android-study-tracker\\BackEnd_API\\API_BookStoreApp\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A450838E-121F-4E40-91BA-B68F31514DD2}|BookStoreAppAPI\\BookStoreAppAPI.csproj|e:\\tailieuhoc\\projectall\\projectprm\\android-study-tracker\\backend_api\\api_bookstoreapp\\bookstoreappapi\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A450838E-121F-4E40-91BA-B68F31514DD2}|BookStoreAppAPI\\BookStoreAppAPI.csproj|solutionrelative:bookstoreappapi\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{56CC200B-5C7A-45AF-A5D4-D4BEB8649A7F}|Services\\Services.csproj|e:\\tailieuhoc\\projectall\\projectprm\\android-study-tracker\\backend_api\\api_bookstoreapp\\services\\implement\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{56CC200B-5C7A-45AF-A5D4-D4BEB8649A7F}|Services\\Services.csproj|solutionrelative:services\\implement\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93D6FFB4-CC93-4F0B-9069-4E52ABB07ADA}|BusinessObject\\BusinessObject.csproj|e:\\tailieuhoc\\projectall\\projectprm\\android-study-tracker\\backend_api\\api_bookstoreapp\\businessobject\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93D6FFB4-CC93-4F0B-9069-4E52ABB07ADA}|BusinessObject\\BusinessObject.csproj|solutionrelative:businessobject\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{56CC200B-5C7A-45AF-A5D4-D4BEB8649A7F}|Services\\Services.csproj|e:\\tailieuhoc\\projectall\\projectprm\\android-study-tracker\\backend_api\\api_bookstoreapp\\services\\interface\\iorderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{56CC200B-5C7A-45AF-A5D4-D4BEB8649A7F}|Services\\Services.csproj|solutionrelative:services\\interface\\iorderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B5D33B6-FE31-474C-A543-1105E6735A16}|DataAccessObject\\DataAccessObject.csproj|e:\\tailieuhoc\\projectall\\projectprm\\android-study-tracker\\backend_api\\api_bookstoreapp\\dataaccessobject\\orderdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9B5D33B6-FE31-474C-A543-1105E6735A16}|DataAccessObject\\DataAccessObject.csproj|solutionrelative:dataaccessobject\\orderdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Order.cs",
+              "DocumentMoniker": "E:\\Tailieuhoc\\ProjectAll\\ProjectPRM\\android-study-tracker\\BackEnd_API\\API_BookStoreApp\\BusinessObject\\Models\\Order.cs",
+              "RelativeDocumentMoniker": "BusinessObject\\Models\\Order.cs",
+              "ToolTip": "E:\\Tailieuhoc\\ProjectAll\\ProjectPRM\\android-study-tracker\\BackEnd_API\\API_BookStoreApp\\BusinessObject\\Models\\Order.cs",
+              "RelativeToolTip": "BusinessObject\\Models\\Order.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAA1wAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-05T17:14:51.769Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IOrderService.cs",
+              "DocumentMoniker": "E:\\Tailieuhoc\\ProjectAll\\ProjectPRM\\android-study-tracker\\BackEnd_API\\API_BookStoreApp\\Services\\Interface\\IOrderService.cs",
+              "RelativeDocumentMoniker": "Services\\Interface\\IOrderService.cs",
+              "ToolTip": "E:\\Tailieuhoc\\ProjectAll\\ProjectPRM\\android-study-tracker\\BackEnd_API\\API_BookStoreApp\\Services\\Interface\\IOrderService.cs",
+              "RelativeToolTip": "Services\\Interface\\IOrderService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-05T17:11:47.934Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "OrderService.cs",
+              "DocumentMoniker": "E:\\Tailieuhoc\\ProjectAll\\ProjectPRM\\android-study-tracker\\BackEnd_API\\API_BookStoreApp\\Services\\Implement\\OrderService.cs",
+              "RelativeDocumentMoniker": "Services\\Implement\\OrderService.cs",
+              "ToolTip": "E:\\Tailieuhoc\\ProjectAll\\ProjectPRM\\android-study-tracker\\BackEnd_API\\API_BookStoreApp\\Services\\Implement\\OrderService.cs",
+              "RelativeToolTip": "Services\\Implement\\OrderService.cs",
+              "ViewState": "AgIAAFYAAAAAAAAAAAA5wG4AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-05T17:11:45.28Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "OrderDAO.cs",
+              "DocumentMoniker": "E:\\Tailieuhoc\\ProjectAll\\ProjectPRM\\android-study-tracker\\BackEnd_API\\API_BookStoreApp\\DataAccessObject\\OrderDAO.cs",
+              "RelativeDocumentMoniker": "DataAccessObject\\OrderDAO.cs",
+              "ToolTip": "E:\\Tailieuhoc\\ProjectAll\\ProjectPRM\\android-study-tracker\\BackEnd_API\\API_BookStoreApp\\DataAccessObject\\OrderDAO.cs",
+              "RelativeToolTip": "DataAccessObject\\OrderDAO.cs",
+              "ViewState": "AgIAACoAAAAAAAAAAAAqwEMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-05T17:07:24.495Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "OrderController.cs",
+              "DocumentMoniker": "E:\\Tailieuhoc\\ProjectAll\\ProjectPRM\\android-study-tracker\\BackEnd_API\\API_BookStoreApp\\BookStoreAppAPI\\Controllers\\OrderController.cs",
+              "RelativeDocumentMoniker": "BookStoreAppAPI\\Controllers\\OrderController.cs",
+              "ToolTip": "E:\\Tailieuhoc\\ProjectAll\\ProjectPRM\\android-study-tracker\\BackEnd_API\\API_BookStoreApp\\BookStoreAppAPI\\Controllers\\OrderController.cs",
+              "RelativeToolTip": "BookStoreAppAPI\\Controllers\\OrderController.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAuwBgAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-05T17:07:19.188Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

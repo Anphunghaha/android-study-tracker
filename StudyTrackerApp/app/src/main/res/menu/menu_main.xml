@@ -19,7 +19,7 @@
     <item
         android:id="@+id/menu_logout"
         android:icon="@drawable/ic_logout"
-        android:title="Hello"
+        android:title="Đăng xuất"
         app:showAsAction="always|withText" />
 
 </menu>
