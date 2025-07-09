@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -32,6 +33,7 @@ public class OrderHistoryActivity extends AppCompatActivity {
     OrderAdapter orderAdapter;
     List<OrderDTO> orders = new ArrayList<>();
     TextView tvEmpty;
+    Button btnBack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,11 +47,17 @@ public class OrderHistoryActivity extends AppCompatActivity {
         // Ánh xạ
         rvOrders = findViewById(R.id.rvOrders);
         tvEmpty = findViewById(R.id.tvEmpty);
+        btnBack = findViewById(R.id.btnBack);
 
         // Cấu hình RecyclerView
         orderAdapter = new OrderAdapter(this, orders);
         rvOrders.setLayoutManager(new LinearLayoutManager(this));
         rvOrders.setAdapter(orderAdapter);
+
+        // Back button click listener
+        btnBack.setOnClickListener(v -> {
+            finish(); // Return to previous activity (UserProfileActivity)
+        });
 
         // Lấy userId từ SharedPreferences
         SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);

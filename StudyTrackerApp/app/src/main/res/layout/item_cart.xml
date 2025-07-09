@@ -1,57 +1,108 @@
-<LinearLayout
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
-    android:padding="12dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/white"
-    android:layout_marginBottom="8dp">
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp"
+    app:cardBackgroundColor="@android:color/white"
+    android:layout_marginHorizontal="8dp"
+    android:layout_marginVertical="8dp">
 
-    <ImageView
-        android:id="@+id/imgCartBook"
-        android:layout_width="80dp"
-        android:layout_height="100dp"
-        android:scaleType="centerCrop"
-        android:layout_marginEnd="12dp"/>
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="0dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1">
+        android:padding="16dp">
 
+        <!-- Book Image -->
+        <ImageView
+            android:id="@+id/imgCartBook"
+            android:layout_width="80dp"
+            android:layout_height="120dp"
+            android:src="@drawable/placeholder_book"
+            android:contentDescription="Book cover"
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:shapeAppearanceOverlay="@style/RoundedImageView" />
+
+        <!-- Book Details -->
         <TextView
             android:id="@+id/tvCartBookName"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Tên sách"
+            android:textSize="16sp"
             android:textStyle="bold"
-            android:textSize="16sp"/>
-
-        <EditText
-            android:id="@+id/etCartQuantity"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:hint="Số lượng"
-            android:inputType="number"
-            android:minHeight="48dp"
-            android:text="1" />
+            android:textColor="#212121"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imgCartBook"
+            app:layout_constraintEnd_toStartOf="@id/btnRemove"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp" />
 
         <TextView
             android:id="@+id/tvCartPrice"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Giá: 100000 VNĐ"/>
+            android:text="Giá: 0 VNĐ"
+            android:textSize="14sp"
+            android:textColor="#616161"
+            app:layout_constraintTop_toBottomOf="@id/tvCartBookName"
+            app:layout_constraintStart_toEndOf="@id/imgCartBook"
+            app:layout_constraintEnd_toStartOf="@id/btnRemove"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp" />
+
+        <!-- Quantity Input -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilCartQuantity"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:hint="Số lượng"
+            app:layout_constraintTop_toBottomOf="@id/tvCartPrice"
+            app:layout_constraintStart_toEndOf="@id/imgCartBook"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etCartQuantity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:minHeight="48dp"
+                android:text="1" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:id="@+id/tvCartTotal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Thành tiền: 0 VNĐ"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="#6750A4"
+            app:layout_constraintTop_toBottomOf="@id/tilCartQuantity"
+            app:layout_constraintStart_toEndOf="@id/imgCartBook"
+            app:layout_constraintEnd_toStartOf="@id/btnRemove"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp" />
+
+        <!-- Remove Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnRemove"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Thành tiền: 100000 VNĐ"/>
-    </LinearLayout>
-    <Button
-        android:id="@+id/btnRemove"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Xóa"/>
-</LinearLayout>
+            android:text="Xóa"
+            android:textSize="14sp"
+            android:textColor="@android:color/white"
+            app:cornerRadius="8dp"
+            app:backgroundTint="#B00020"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="8dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

@@ -42,7 +42,6 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
         holder.tvShippingAddress.setText("Thông tin để giao hàng: " + order.shippingAddress);
         holder.tvStatus.setText("Trạng thái: " + order.status);
 
-
         StringBuilder itemDetails = new StringBuilder();
         for (OrderItemDTO item : order.items) {
             itemDetails.append("• ").append(item.bookTitle)
@@ -51,7 +50,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
         }
         holder.tvItems.setText(itemDetails.toString().trim());
 
-        // ✅ Xử lý ảnh: lấy ảnh của cuốn sách đầu tiên trong đơn hàng
+        // Handle book image
         if (!order.items.isEmpty()) {
             OrderItemDTO firstItem = order.items.get(0);
             if (firstItem.imgUrl != null) {
@@ -62,7 +61,6 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
                         context.getPackageName()
                 );
 
-                //thêm log để check
                 Log.d("OrderAdapter", "imgUrl = " + firstItem.imgUrl);
                 Log.d("OrderAdapter", "imageName = " + imageName);
                 Log.d("OrderAdapter", "imageResId = " + imageResId);
@@ -74,7 +72,6 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
         } else {
             holder.imgBook.setImageResource(R.drawable.default_image);
         }
-
     }
 
     @Override
@@ -83,22 +80,18 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
     }
 
     public static class OrderViewHolder extends RecyclerView.ViewHolder {
-        TextView tvOrderId, tvOrderDate, tvTotal, tvItems;
+        TextView tvOrderId, tvOrderDate, tvTotal, tvItems, tvShippingAddress, tvStatus;
         ImageView imgBook;
-
-        TextView tvShippingAddress, tvStatus;
-
 
         public OrderViewHolder(@NonNull View itemView) {
             super(itemView);
             tvOrderId = itemView.findViewById(R.id.tvOrderId);
             tvOrderDate = itemView.findViewById(R.id.tvOrderDate);
-            tvTotal = itemView.findViewById(R.id.tvOrderTotal);
+            tvTotal = itemView.findViewById(R.id.tvTotal);
             tvItems = itemView.findViewById(R.id.tvItems);
-            imgBook = itemView.findViewById(R.id.imgBook);
             tvShippingAddress = itemView.findViewById(R.id.tvShippingAddress);
             tvStatus = itemView.findViewById(R.id.tvStatus);
-
+            imgBook = itemView.findViewById(R.id.imgBook);
         }
     }
 }

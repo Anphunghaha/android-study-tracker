@@ -25,7 +25,7 @@ import retrofit2.Response;
 
 public class UpdateProfileActivity extends AppCompatActivity {
     EditText edtUsername, edtFullName, edtCurrentPassword, edtNewPassword, edtRePassword;
-    Button btnUpdate;
+    Button btnUpdate, btnBack;
     int userId;
 
     @Override
@@ -47,6 +47,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
         edtNewPassword = findViewById(R.id.edtNewPassword);
         edtRePassword = findViewById(R.id.edtRePassword);
         btnUpdate = findViewById(R.id.btnUpdate);
+        btnBack = findViewById(R.id.btnBack);
 
         SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
         userId = prefs.getInt("userId", -1);
@@ -57,6 +58,8 @@ public class UpdateProfileActivity extends AppCompatActivity {
         edtFullName.setText(currentFullName);
 
         btnUpdate.setOnClickListener(v -> updateUser());
+        btnBack.setOnClickListener(v -> finish()); // Return to UserProfileActivity
+
     }
 
     private void updateUser() {
@@ -116,6 +119,9 @@ public class UpdateProfileActivity extends AppCompatActivity {
     }
 
     private void showSnack(String message) {
-        Snackbar.make(findViewById(R.id.main), message, Snackbar.LENGTH_LONG).show();
+        Snackbar.make(findViewById(R.id.main), message, Snackbar.LENGTH_LONG)
+                .setBackgroundTint(getResources().getColor(com.google.android.material.R.color.material_deep_teal_500))
+                .setTextColor(getResources().getColor(android.R.color.white))
+                .show();
     }
 }

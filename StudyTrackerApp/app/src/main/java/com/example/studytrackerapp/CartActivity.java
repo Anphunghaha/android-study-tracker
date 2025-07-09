@@ -3,9 +3,9 @@ package com.example.studytrackerapp;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Looper;
 import android.util.Log;
-import android.widget.Button;
-import android.widget.EditText;
+import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -26,7 +26,9 @@ import com.example.studytrackerapp.Models.OrderResponse;
 import com.example.studytrackerapp.apdapters.CartAdapter;
 import com.example.studytrackerapp.api.ApiClient;
 import com.example.studytrackerapp.api.ApiService;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -40,10 +42,10 @@ import retrofit2.Response;
 public class CartActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private TextView tvTotalPrice;
-    private Button btnCheckout;
+    private MaterialButton btnCheckout, btnBack;
     private CartAdapter adapter;
     private List<CartItem> cartItems;
-    private EditText etAddress;
+    private TextInputEditText etAddress;
     private RadioGroup rgPayment;
     private RadioButton rbCash, rbQR;
 
@@ -59,98 +61,109 @@ public class CartActivity extends AppCompatActivity {
             return insets;
         });
 
-        // Ánh xạ view
+        // Initialize views
         recyclerView = findViewById(R.id.recyclerCart);
         tvTotalPrice = findViewById(R.id.tvTotalPrice);
         btnCheckout = findViewById(R.id.btnCheckout);
-        Button btnBackToHome = findViewById(R.id.btnBackToHome);
+        btnBack = findViewById(R.id.btnBack);
         etAddress = findViewById(R.id.etAddress);
         rgPayment = findViewById(R.id.rgPayment);
         rbCash = findViewById(R.id.rbCash);
         rbQR = findViewById(R.id.rbQR);
 
-        btnBackToHome.setOnClickListener(v -> {
+        // Back button click listener
+        btnBack.setOnClickListener(v -> {
             Intent intent = new Intent(CartActivity.this, MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             finish();
         });
 
+        // Initialize RecyclerView
         cartItems = CartManager.getInstance().getCartItems();
         adapter = new CartAdapter(this, cartItems);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
+        // Update empty state visibility
+        updateEmptyState();
+
+        // Update total price
         updateTotalPrice();
 
-        // ✅ Xử lý thanh toán khi nhấn nút
+        // Checkout button click listener
         btnCheckout.setOnClickListener(v -> {
-            // Lấy địa chỉ
+            // Check if cart is empty
+            if (cartItems.isEmpty()) {
+                showSnack("Giỏ hàng trống, vui lòng thêm sản phẩm");
+                return;
+            }
+
+            // Get address
             String address = etAddress.getText().toString().trim();
             if (address.isEmpty()) {
                 Snackbar.make(findViewById(R.id.main), "Vui lòng nhập địa chỉ giao hàng", Snackbar.LENGTH_SHORT).show();
                 return;
             }
 
-            // Kiểm tra phương thức thanh toán
+            // Check payment method
             int selectedPaymentId = rgPayment.getCheckedRadioButtonId();
             if (selectedPaymentId == -1) {
-                Snackbar.make(findViewById(R.id.main), "Vui lòng chọn phương thức thanh toán", Snackbar.LENGTH_SHORT).show();
+                showSnack("Vui lòng chọn phương thức thanh toán");
                 return;
             }
 
-            // Chỉ xử lý tiền mặt
+            // Only handle cash payment for now
             if (selectedPaymentId != R.id.rbCash) {
-                Snackbar.make(findViewById(R.id.main), "Chức năng QR sẽ cập nhật sau", Snackbar.LENGTH_SHORT).show();
+                showSnack("Chức năng QR sẽ cập nhật sau");
                 return;
             }
 
-            // Lấy userId từ SharedPreferences
+            // Get userId from SharedPreferences
             SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
             int userId = prefs.getInt("userId", -1);
             if (userId == -1) {
-                Snackbar.make(findViewById(R.id.main), "Vui lòng đăng nhập trước khi thanh toán", Snackbar.LENGTH_SHORT).show();
+                showSnack("Vui lòng đăng nhập trước khi thanh toán");
                 return;
             }
 
-            // Tạo danh sách OrderItemCreate
+            // Create order items
             List<OrderItemCreate> orderItems = new ArrayList<>();
             for (CartItem item : cartItems) {
                 orderItems.add(new OrderItemCreate(item.getBookId(), item.getQuantity()));
             }
 
-            // Gửi request lên API
-            OrderCreate order = new OrderCreate(userId, "Đang xử lý + Chưa thanh toán",address ,orderItems);
+            // Send order to API
+            OrderCreate order = new OrderCreate(userId, "Đang xử lý + Chưa thanh toán", address, orderItems);
             ApiService apiService = ApiClient.getClient().create(ApiService.class);
 
-            // 🧠 Thêm đoạn LOG để kiểm tra dữ liệu chuẩn bị gửi lên
             Log.d("OrderDebug", "userId: " + userId);
             Log.d("OrderDebug", "address: " + address);
             Log.d("OrderDebug", "items count: " + orderItems.size());
+
             Call<OrderResponse> call = apiService.createOrder(order);
             call.enqueue(new Callback<OrderResponse>() {
                 @Override
                 public void onResponse(Call<OrderResponse> call, Response<OrderResponse> response) {
                     if (response.isSuccessful() && response.body() != null) {
-                        Snackbar.make(CartActivity.this.findViewById(android.R.id.content), "Đặt hàng thành công!", Snackbar.LENGTH_SHORT).show();
-                        new android.os.Handler().postDelayed(() -> {
+                        showSnack("Đặt hàng thành công!");
+                        new android.os.Handler(Looper.getMainLooper()).postDelayed(() -> {
                             CartManager.getInstance().clearCart();
                             Intent intent = new Intent(CartActivity.this, MainActivity.class);
                             intent.putExtra("refresh", true);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(intent);
                             finish();
-                        }, 1500);  // kết thúc CartActivity
-                    }  else {
-                        Snackbar.make(findViewById(R.id.main), "Lỗi khi đặt hàng", Snackbar.LENGTH_SHORT).show();
+                        }, 1500);
+                    } else {
+                        showSnack("Lỗi khi đặt hàng: " + response.message());
                         Log.e("CheckoutError", "Response code: " + response.code());
-
                     }
                 }
 
                 @Override
                 public void onFailure(Call<OrderResponse> call, Throwable t) {
-                    Snackbar.make(findViewById(R.id.main), "Lỗi mạng: " + t.getMessage(), Snackbar.LENGTH_SHORT).show();
+                    showSnack("Lỗi mạng: " + t.getMessage());
                 }
             });
         });
@@ -165,5 +178,22 @@ public class CartActivity extends AppCompatActivity {
         NumberFormat formatter = NumberFormat.getNumberInstance(Locale.US);
         formatter.setMaximumFractionDigits(0);
         tvTotalPrice.setText("Tổng: " + formatter.format(total) + " VNĐ");
+    }
+
+    private void updateEmptyState() {
+        if (cartItems.isEmpty()) {
+            findViewById(R.id.emptyState).setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.GONE);
+        } else {
+            findViewById(R.id.emptyState).setVisibility(View.GONE);
+            recyclerView.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void showSnack(String message) {
+        Snackbar.make(findViewById(R.id.main), message, Snackbar.LENGTH_LONG)
+                .setBackgroundTint(getResources().getColor(com.google.android.material.R.color.material_deep_teal_500))
+                .setTextColor(getResources().getColor(android.R.color.white))
+                .show();
     }
 }

@@ -14,7 +14,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class UserProfileActivity extends AppCompatActivity {
     TextView tvFullName, tvUsername, tvEmail, tvRole;
-    Button btnViewOrders, btnUpdateProfile;
+    Button btnViewOrders, btnUpdateProfile, btnBack;
 
 
     @Override
@@ -33,6 +33,8 @@ public class UserProfileActivity extends AppCompatActivity {
         tvRole = findViewById(R.id.tvRole);
         btnViewOrders = findViewById(R.id.btnViewOrders);
         btnUpdateProfile = findViewById(R.id.btnUpdateProfile);
+        btnBack = findViewById(R.id.btnBack);
+
 
         // Lấy thông tin từ SharedPreferences
         SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
@@ -53,6 +55,12 @@ public class UserProfileActivity extends AppCompatActivity {
 
         btnUpdateProfile.setOnClickListener(v -> {
             startActivity(new Intent(UserProfileActivity.this, UpdateProfileActivity.class));
+        });
+
+        // Back button click listener
+        btnBack.setOnClickListener(v -> {
+            startActivity(new Intent(UserProfileActivity.this, MainActivity.class));
+            finish(); // Optional: Close UserProfileActivity to prevent stacking
         });
     }
 }
