@@ -40,6 +40,12 @@ namespace DataAccessObject
         {
          return _context.Users.FirstOrDefault(d => d.Email.ToLower().Equals(email.ToLower()));
         }
+        public void UpdateUser(User user)
+        {
+            _context.Users.Update(user);
+            _context.SaveChanges();
+        }
+
     }
 
 }

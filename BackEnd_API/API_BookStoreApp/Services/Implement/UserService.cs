@@ -101,5 +101,28 @@ namespace Services.Implement
 
             _userDAO.AddUser(user);
         }
+        public void UpdateUser(UserUpdateDTO dto)
+        {
+            var user = _userDAO.GetUserById(dto.UserId);
+            if (user == null)
+                throw new Exception("User not found");
+
+            // ✅ Xác minh mật khẩu hiện tại
+            if (user.Password != dto.CurrentPassword)
+                throw new Exception("Mật khẩu hiện tại không đúng");
+
+            // ✅ Cập nhật username và fullname nếu có nhập
+            if (!string.IsNullOrEmpty(dto.Username))
+                user.Username = dto.Username;
+
+            if (!string.IsNullOrEmpty(dto.FullName))
+                user.FullName = dto.FullName;
+
+            // ✅ Nếu có mật khẩu mới thì thay đổi
+            if (!string.IsNullOrEmpty(dto.NewPassword))
+                user.Password = dto.NewPassword;
+
+            _userDAO.UpdateUser(user);
+        }
     }
 }

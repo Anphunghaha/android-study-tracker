@@ -427,5 +427,21 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "BookStoreAppAPI.Controllers.UserController",
+    "Method": "UpdateUser",
+    "RelativePath": "api/User/update",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "DTOs.DTO.UserUpdateDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

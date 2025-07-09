@@ -3,6 +3,30 @@
   "WorkspaceRootPath": "E:\\Tailieuhoc\\ProjectAll\\ProjectPRM\\android-study-tracker\\BackEnd_API\\API_BookStoreApp\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A450838E-121F-4E40-91BA-B68F31514DD2}|BookStoreAppAPI\\BookStoreAppAPI.csproj|e:\\tailieuhoc\\projectall\\projectprm\\android-study-tracker\\backend_api\\api_bookstoreapp\\bookstoreappapi\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A450838E-121F-4E40-91BA-B68F31514DD2}|BookStoreAppAPI\\BookStoreAppAPI.csproj|solutionrelative:bookstoreappapi\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B5D33B6-FE31-474C-A543-1105E6735A16}|DataAccessObject\\DataAccessObject.csproj|e:\\tailieuhoc\\projectall\\projectprm\\android-study-tracker\\backend_api\\api_bookstoreapp\\dataaccessobject\\userdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9B5D33B6-FE31-474C-A543-1105E6735A16}|DataAccessObject\\DataAccessObject.csproj|solutionrelative:dataaccessobject\\userdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{56CC200B-5C7A-45AF-A5D4-D4BEB8649A7F}|Services\\Services.csproj|e:\\tailieuhoc\\projectall\\projectprm\\android-study-tracker\\backend_api\\api_bookstoreapp\\services\\implement\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{56CC200B-5C7A-45AF-A5D4-D4BEB8649A7F}|Services\\Services.csproj|solutionrelative:services\\implement\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{56CC200B-5C7A-45AF-A5D4-D4BEB8649A7F}|Services\\Services.csproj|e:\\tailieuhoc\\projectall\\projectprm\\android-study-tracker\\backend_api\\api_bookstoreapp\\services\\interface\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{56CC200B-5C7A-45AF-A5D4-D4BEB8649A7F}|Services\\Services.csproj|solutionrelative:services\\interface\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{924C423D-579A-436E-A204-F7F875D17BEA}|DTOs\\DTOs.csproj|e:\\tailieuhoc\\projectall\\projectprm\\android-study-tracker\\backend_api\\api_bookstoreapp\\dtos\\dto\\userupdatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{924C423D-579A-436E-A204-F7F875D17BEA}|DTOs\\DTOs.csproj|solutionrelative:dtos\\dto\\userupdatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93D6FFB4-CC93-4F0B-9069-4E52ABB07ADA}|BusinessObject\\BusinessObject.csproj|e:\\tailieuhoc\\projectall\\projectprm\\android-study-tracker\\backend_api\\api_bookstoreapp\\businessobject\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93D6FFB4-CC93-4F0B-9069-4E52ABB07ADA}|BusinessObject\\BusinessObject.csproj|solutionrelative:businessobject\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{56CC200B-5C7A-45AF-A5D4-D4BEB8649A7F}|Services\\Services.csproj|e:\\tailieuhoc\\projectall\\projectprm\\android-study-tracker\\backend_api\\api_bookstoreapp\\services\\implement\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{56CC200B-5C7A-45AF-A5D4-D4BEB8649A7F}|Services\\Services.csproj|solutionrelative:services\\implement\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -19,16 +43,8 @@
       "RelativeMoniker": "D:0:0:{9B5D33B6-FE31-474C-A543-1105E6735A16}|DataAccessObject\\DataAccessObject.csproj|solutionrelative:dataaccessobject\\orderdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9B5D33B6-FE31-474C-A543-1105E6735A16}|DataAccessObject\\DataAccessObject.csproj|e:\\tailieuhoc\\projectall\\projectprm\\android-study-tracker\\backend_api\\api_bookstoreapp\\dataaccessobject\\userdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9B5D33B6-FE31-474C-A543-1105E6735A16}|DataAccessObject\\DataAccessObject.csproj|solutionrelative:dataaccessobject\\userdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{924C423D-579A-436E-A204-F7F875D17BEA}|DTOs\\DTOs.csproj|e:\\tailieuhoc\\projectall\\projectprm\\android-study-tracker\\backend_api\\api_bookstoreapp\\dtos\\dto\\userresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{924C423D-579A-436E-A204-F7F875D17BEA}|DTOs\\DTOs.csproj|solutionrelative:dtos\\dto\\userresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{93D6FFB4-CC93-4F0B-9069-4E52ABB07ADA}|BusinessObject\\BusinessObject.csproj|e:\\tailieuhoc\\projectall\\projectprm\\android-study-tracker\\backend_api\\api_bookstoreapp\\businessobject\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{93D6FFB4-CC93-4F0B-9069-4E52ABB07ADA}|BusinessObject\\BusinessObject.csproj|solutionrelative:businessobject\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{93D6FFB4-CC93-4F0B-9069-4E52ABB07ADA}|BusinessObject\\BusinessObject.csproj|e:\\tailieuhoc\\projectall\\projectprm\\android-study-tracker\\backend_api\\api_bookstoreapp\\businessobject\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -46,11 +62,60 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "E:\\Tailieuhoc\\ProjectAll\\ProjectPRM\\android-study-tracker\\BackEnd_API\\API_BookStoreApp\\BookStoreAppAPI\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "BookStoreAppAPI\\Controllers\\UserController.cs",
+              "ToolTip": "E:\\Tailieuhoc\\ProjectAll\\ProjectPRM\\android-study-tracker\\BackEnd_API\\API_BookStoreApp\\BookStoreAppAPI\\Controllers\\UserController.cs",
+              "RelativeToolTip": "BookStoreAppAPI\\Controllers\\UserController.cs",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAqwEEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-09T02:23:16.619Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IUserService.cs",
+              "DocumentMoniker": "E:\\Tailieuhoc\\ProjectAll\\ProjectPRM\\android-study-tracker\\BackEnd_API\\API_BookStoreApp\\Services\\Interface\\IUserService.cs",
+              "RelativeDocumentMoniker": "Services\\Interface\\IUserService.cs",
+              "ToolTip": "E:\\Tailieuhoc\\ProjectAll\\ProjectPRM\\android-study-tracker\\BackEnd_API\\API_BookStoreApp\\Services\\Interface\\IUserService.cs",
+              "RelativeToolTip": "Services\\Interface\\IUserService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-09T02:22:43.219Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "E:\\Tailieuhoc\\ProjectAll\\ProjectPRM\\android-study-tracker\\BackEnd_API\\API_BookStoreApp\\Services\\Implement\\UserService.cs",
+              "RelativeDocumentMoniker": "Services\\Implement\\UserService.cs",
+              "ToolTip": "E:\\Tailieuhoc\\ProjectAll\\ProjectPRM\\android-study-tracker\\BackEnd_API\\API_BookStoreApp\\Services\\Implement\\UserService.cs",
+              "RelativeToolTip": "Services\\Implement\\UserService.cs",
+              "ViewState": "AgIAAFwAAAAAAAAAAAAiwH0AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-09T02:22:38.916Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "UserUpdateDTO.cs",
+              "DocumentMoniker": "E:\\Tailieuhoc\\ProjectAll\\ProjectPRM\\android-study-tracker\\BackEnd_API\\API_BookStoreApp\\DTOs\\DTO\\UserUpdateDTO.cs",
+              "RelativeDocumentMoniker": "DTOs\\DTO\\UserUpdateDTO.cs",
+              "ToolTip": "E:\\Tailieuhoc\\ProjectAll\\ProjectPRM\\android-study-tracker\\BackEnd_API\\API_BookStoreApp\\DTOs\\DTO\\UserUpdateDTO.cs",
+              "RelativeToolTip": "DTOs\\DTO\\UserUpdateDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-09T02:20:36.606Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "OrderDTO.cs",
               "DocumentMoniker": "E:\\Tailieuhoc\\ProjectAll\\ProjectPRM\\android-study-tracker\\BackEnd_API\\API_BookStoreApp\\DTOs\\DTO\\OrderDTO.cs",
               "RelativeDocumentMoniker": "DTOs\\DTO\\OrderDTO.cs",
@@ -58,25 +123,23 @@
               "RelativeToolTip": "DTOs\\DTO\\OrderDTO.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-05T18:40:51.828Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-05T18:40:51.828Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "UserDAO.cs",
               "DocumentMoniker": "E:\\Tailieuhoc\\ProjectAll\\ProjectPRM\\android-study-tracker\\BackEnd_API\\API_BookStoreApp\\DataAccessObject\\UserDAO.cs",
               "RelativeDocumentMoniker": "DataAccessObject\\UserDAO.cs",
               "ToolTip": "E:\\Tailieuhoc\\ProjectAll\\ProjectPRM\\android-study-tracker\\BackEnd_API\\API_BookStoreApp\\DataAccessObject\\UserDAO.cs",
               "RelativeToolTip": "DataAccessObject\\UserDAO.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABEAAAAAAAAAAAA2wC8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-05T18:18:58.376Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-05T18:18:58.376Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 10,
               "Title": "UserResponseDto.cs",
               "DocumentMoniker": "E:\\Tailieuhoc\\ProjectAll\\ProjectPRM\\android-study-tracker\\BackEnd_API\\API_BookStoreApp\\DTOs\\DTO\\UserResponseDto.cs",
               "RelativeDocumentMoniker": "DTOs\\DTO\\UserResponseDto.cs",
@@ -84,12 +147,11 @@
               "RelativeToolTip": "DTOs\\DTO\\UserResponseDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-05T18:07:10.65Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-05T18:07:10.65Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 5,
               "Title": "User.cs",
               "DocumentMoniker": "E:\\Tailieuhoc\\ProjectAll\\ProjectPRM\\android-study-tracker\\BackEnd_API\\API_BookStoreApp\\BusinessObject\\Models\\User.cs",
               "RelativeDocumentMoniker": "BusinessObject\\Models\\User.cs",
@@ -97,12 +159,11 @@
               "RelativeToolTip": "BusinessObject\\Models\\User.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-05T18:06:56.34Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-05T18:06:56.34Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 11,
               "Title": "Order.cs",
               "DocumentMoniker": "E:\\Tailieuhoc\\ProjectAll\\ProjectPRM\\android-study-tracker\\BackEnd_API\\API_BookStoreApp\\BusinessObject\\Models\\Order.cs",
               "RelativeDocumentMoniker": "BusinessObject\\Models\\Order.cs",
@@ -110,12 +171,11 @@
               "RelativeToolTip": "BusinessObject\\Models\\Order.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAA1wAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-05T17:14:51.769Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-05T17:14:51.769Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 12,
               "Title": "IOrderService.cs",
               "DocumentMoniker": "E:\\Tailieuhoc\\ProjectAll\\ProjectPRM\\android-study-tracker\\BackEnd_API\\API_BookStoreApp\\Services\\Interface\\IOrderService.cs",
               "RelativeDocumentMoniker": "Services\\Interface\\IOrderService.cs",
@@ -123,25 +183,23 @@
               "RelativeToolTip": "Services\\Interface\\IOrderService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-05T17:11:47.934Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-05T17:11:47.934Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 6,
               "Title": "OrderService.cs",
               "DocumentMoniker": "E:\\Tailieuhoc\\ProjectAll\\ProjectPRM\\android-study-tracker\\BackEnd_API\\API_BookStoreApp\\Services\\Implement\\OrderService.cs",
               "RelativeDocumentMoniker": "Services\\Implement\\OrderService.cs",
               "ToolTip": "E:\\Tailieuhoc\\ProjectAll\\ProjectPRM\\android-study-tracker\\BackEnd_API\\API_BookStoreApp\\Services\\Implement\\OrderService.cs",
               "RelativeToolTip": "Services\\Implement\\OrderService.cs",
-              "ViewState": "AgIAAFEAAAAAAAAAAAAYwHMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-05T17:11:45.28Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-05T17:11:45.28Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 9,
               "Title": "OrderDAO.cs",
               "DocumentMoniker": "E:\\Tailieuhoc\\ProjectAll\\ProjectPRM\\android-study-tracker\\BackEnd_API\\API_BookStoreApp\\DataAccessObject\\OrderDAO.cs",
               "RelativeDocumentMoniker": "DataAccessObject\\OrderDAO.cs",
@@ -149,12 +207,11 @@
               "RelativeToolTip": "DataAccessObject\\OrderDAO.cs",
               "ViewState": "AgIAACoAAAAAAAAAAAAqwDoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-05T17:07:24.495Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-05T17:07:24.495Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 8,
               "Title": "OrderController.cs",
               "DocumentMoniker": "E:\\Tailieuhoc\\ProjectAll\\ProjectPRM\\android-study-tracker\\BackEnd_API\\API_BookStoreApp\\BookStoreAppAPI\\Controllers\\OrderController.cs",
               "RelativeDocumentMoniker": "BookStoreAppAPI\\Controllers\\OrderController.cs",
@@ -162,8 +219,7 @@
               "RelativeToolTip": "BookStoreAppAPI\\Controllers\\OrderController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAADcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-05T17:07:19.188Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-05T17:07:19.188Z"
             }
           ]
         }

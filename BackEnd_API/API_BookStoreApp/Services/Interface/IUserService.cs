@@ -12,5 +12,7 @@ namespace Services.Interface
         UserResponseDto Authenticate(UserLoginDto loginDto);
         UserResponseDto GetById(int id);
         void Register(UserRegisterDTO userDto);
+        void UpdateUser(UserUpdateDTO dto);
+
     }
 }

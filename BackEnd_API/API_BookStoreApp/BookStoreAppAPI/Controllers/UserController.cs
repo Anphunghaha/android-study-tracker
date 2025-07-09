@@ -50,6 +50,19 @@ namespace BookStoreAppAPI.Controllers
             _userService.Register(userDto); // chỉ cần dùng Password, bỏ qua ConfirmPassword
             return Ok(new { message = "Đăng ký thành công" });
         }
+        [HttpPut("update")]
+        public IActionResult UpdateUser([FromBody] UserUpdateDTO dto)
+        {
+            try
+            {
+                _userService.UpdateUser(dto);
+                return Ok(new { message = "Cập nhật thành công" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
 
     }
 }
