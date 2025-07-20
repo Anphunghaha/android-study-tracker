@@ -15,6 +15,8 @@ namespace Services.Interface
         Task<List<BookDto>> GetBooksByCategoryAsync(int categoryId);
         Task AddBookAsync(BookDto book);
         Task UpdateBookAsync(BookDto book, int idFromRoute);
+        Task UpdateBookPartialAsync(BookEditDto dto);
+
         Task DeleteBookAsync(int bookId);
     }
 }

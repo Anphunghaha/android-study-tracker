@@ -1,6 +1,7 @@
 ﻿using BusinessObject.Models;
 using DataAccessObject;
 using DTOs.DTO;
+using Microsoft.EntityFrameworkCore;
 using Services.Interface;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace Services.Implement
         public async Task AddBookAsync(BookDto dto)
         {
             var book = MapToEntity(dto);
-            _bookDAO.AddBook(book); // DAO bạn dùng synchronous, có thể chỉnh lại dùng async
+            _bookDAO.AddBookAsync(book); // DAO bạn dùng synchronous, có thể chỉnh lại dùng async
         }
 
         public async Task DeleteBookAsync(int bookId)
@@ -77,6 +78,23 @@ namespace Services.Implement
 
             _bookDAO.UpdateBook(existingBook);
         }
+
+        public async Task UpdateBookPartialAsync(BookEditDto dto)
+        {
+            var book = await _bookDAO.GetBookByIdAsync(dto.BookID);
+            if (book == null)
+                throw new Exception("Book not found");
+
+            if (!string.IsNullOrWhiteSpace(dto.Title)) book.Title = dto.Title;
+            if (!string.IsNullOrWhiteSpace(dto.Description)) book.Description = dto.Description;
+            if (dto.Price.HasValue) book.Price = dto.Price.Value;
+            if (dto.Stock.HasValue) book.Stock = dto.Stock.Value;
+            if (!string.IsNullOrWhiteSpace(dto.ImageUrl)) book.ImageUrl = dto.ImageUrl;
+            if (dto.AuthorId.HasValue) book.AuthorId = dto.AuthorId.Value;
+            if (dto.CategoryId.HasValue) book.CategoryId = dto.CategoryId.Value;
+
+            _bookDAO.UpdateBook(book);
+        }
         //Mapping helpers
         private BookDto MapToDTO(Book b) => new BookDto
         {
@@ -88,11 +106,12 @@ namespace Services.Implement
             ImageUrl = b.ImageUrl,
             AuthorId = b.AuthorId,
             CategoryId = b.CategoryId,
+            AuthorName = b.Author.Name,
+            CategoryName = b.Category.Name
         };
 
         private Book MapToEntity(BookDto dto) => new Book
         {
-            BookId = dto.BookID,
             Title = dto.Title,
             Description = dto.Description,
             Price = dto.Price,

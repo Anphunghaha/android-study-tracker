@@ -51,5 +51,20 @@ namespace BookStoreAppAPI.Controllers
                 return BadRequest(new { message = ex.Message });
             }
         }
+
+        [HttpPut("UpdateStatus/{orderId}")]
+        public async Task<IActionResult> UpdateStatus(int orderId, [FromBody] string newStatus)
+        {
+            try
+            {
+                await _orderService.UpdateOrderStatusAsync(orderId, newStatus);
+                return NoContent(); // Thành công
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+
     }
 }

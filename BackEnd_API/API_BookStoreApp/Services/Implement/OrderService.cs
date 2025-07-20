@@ -89,6 +89,16 @@ namespace Services.Implement
             var orders = await _orderDAO.GetAllOrdersAsync();
             return orders.Select(MapToOrderDTO).ToList();
         }
+        public async Task UpdateOrderStatusAsync(int orderId, string newStatus)
+        {
+            var order = await _orderDAO.GetOrderByIdAsync(orderId);
+            if (order == null)
+                throw new Exception("Order not found");
+
+            order.Status = newStatus;
+            await _orderDAO.UpdateOrderAsync(order);
+        }
+
         // Helper method to map Order to DTO
         private OrderDTO MapToOrderDTO(Order order)
         {
@@ -98,6 +108,8 @@ namespace Services.Implement
                 OrderDate = order.OrderDate,
                 TotalAmount = order.TotalAmount,
                 ShippingAddress = order.ShippingAddress,
+                UserId = order.UserId,
+                UserName=order.User.Username,
                 Status = order.Status,
                 Items = order.OrderItems.Select(oi => new OrderItemDTO
                 {

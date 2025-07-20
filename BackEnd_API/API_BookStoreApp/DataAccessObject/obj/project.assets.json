@@ -1125,6 +1125,16 @@
         "runtime": {
           "bin/placeholder/BusinessObject.dll": {}
         }
+      },
+      "DTOs/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/DTOs.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DTOs.dll": {}
+        }
       }
     }
   },
@@ -3090,11 +3100,17 @@
       "type": "project",
       "path": "../BusinessObject/BusinessObject.csproj",
       "msbuildProject": "../BusinessObject/BusinessObject.csproj"
+    },
+    "DTOs/1.0.0": {
+      "type": "project",
+      "path": "../DTOs/DTOs.csproj",
+      "msbuildProject": "../DTOs/DTOs.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "BusinessObject >= 1.0.0"
+      "BusinessObject >= 1.0.0",
+      "DTOs >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -3133,6 +3149,9 @@
           "projectReferences": {
             "E:\\Tailieuhoc\\ProjectAll\\ProjectPRM\\android-study-tracker\\BackEnd_API\\API_BookStoreApp\\BusinessObject\\BusinessObject.csproj": {
               "projectPath": "E:\\Tailieuhoc\\ProjectAll\\ProjectPRM\\android-study-tracker\\BackEnd_API\\API_BookStoreApp\\BusinessObject\\BusinessObject.csproj"
+            },
+            "E:\\Tailieuhoc\\ProjectAll\\ProjectPRM\\android-study-tracker\\BackEnd_API\\API_BookStoreApp\\DTOs\\DTOs.csproj": {
+              "projectPath": "E:\\Tailieuhoc\\ProjectAll\\ProjectPRM\\android-study-tracker\\BackEnd_API\\API_BookStoreApp\\DTOs\\DTOs.csproj"
             }
           }
         }

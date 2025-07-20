@@ -65,6 +65,15 @@ namespace DataAccessObject
                 .OrderByDescending(o => o.OrderDate)
                 .ToListAsync();
         }
+        public async Task<Order?> GetOrderByIdAsync(int orderId)
+        {
+            return await _context.Orders.FirstOrDefaultAsync(o => o.OrderId == orderId);
+        }
+        public async Task UpdateOrderAsync(Order order)
+        {
+            _context.Orders.Update(order);
+            await _context.SaveChangesAsync();
+        }
 
 
     }

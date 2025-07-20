@@ -12,5 +12,7 @@ namespace Services.Interface
         Task<OrderDTO> CreateOrderAsync(OrderCreateDTO request);
         Task<List<OrderDTO>> GetOrdersByUserIdAsync(int userId);
         Task<List<OrderDTO>> GetAllOrdersAsync();
+        Task UpdateOrderStatusAsync(int orderId, string newStatus);
+
     }
 }

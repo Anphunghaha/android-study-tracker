@@ -13,6 +13,8 @@ namespace DTOs.DTO
         public decimal? TotalAmount { get; set; }
         public string ShippingAddress { get; set; }
         public string Status { get; set; }
+        public int? UserId { get; set; }  
+        public string? UserName { get; set; }
 
         public List<OrderItemDTO> Items { get; set; }
     }

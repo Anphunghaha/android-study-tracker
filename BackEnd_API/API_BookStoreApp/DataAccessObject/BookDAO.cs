@@ -1,4 +1,5 @@
 ﻿using BusinessObject.Models;
+using DTOs.DTO;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -29,18 +30,19 @@ namespace DataAccessObject
                 .Include(b => b.Category)
                 .FirstOrDefaultAsync(b => b.BookId == id);
         }
-        public void AddBook(Book c)
+        public async Task AddBookAsync(Book book)
         {
             try
             {
-                _context.Books.Add(c);
-                _context.SaveChanges();
+                await _context.Books.AddAsync(book); // dùng async
+                await _context.SaveChangesAsync();
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("Error adding book: " + ex.Message);
             }
         }
+
         public void UpdateBook(Book c)
         {
             try

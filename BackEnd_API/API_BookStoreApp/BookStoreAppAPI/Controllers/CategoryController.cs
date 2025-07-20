@@ -37,7 +37,6 @@ namespace BookStoreAppAPI.Controllers
 
         // POST: api/Category
         [HttpPost]
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create([FromBody] CategoryDTO dto)
         {
             await _categoryService.AddCategoryAsync(dto);
@@ -46,7 +45,6 @@ namespace BookStoreAppAPI.Controllers
 
         // PUT: api/Category/5
         [HttpPut("{id}")]
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Update(int id, [FromBody] CategoryDTO dto)
         {
             if (id != dto.CategoryId)
@@ -58,7 +56,6 @@ namespace BookStoreAppAPI.Controllers
 
         // DELETE: api/Category/5
         [HttpDelete("{id}")]
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             await _categoryService.DeleteCategoryAsync(id);

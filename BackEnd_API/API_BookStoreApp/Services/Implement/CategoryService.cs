@@ -73,7 +73,7 @@ namespace Services.Implement
 
         private Category MapToEntity(CategoryDTO dto) => new Category
         {
-            CategoryId = dto.CategoryId,
+          //  CategoryId = dto.CategoryId,
             Name = dto.Name,
             Description = dto.Description,
             CreatedAt = dto.CreatedAt

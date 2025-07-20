@@ -70,7 +70,7 @@ namespace BookStoreAppAPI.Controllers
 
             try
             {
-                await _bookService.UpdateBookAsync(book,id);
+                await _bookService.UpdateBookAsync(book, id);
                 return Ok(new { message = "Book updated successfully" });
             }
             catch (Exception ex)
@@ -78,6 +78,8 @@ namespace BookStoreAppAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+
         // DELETE: api/book/{id}
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteBook(int id)

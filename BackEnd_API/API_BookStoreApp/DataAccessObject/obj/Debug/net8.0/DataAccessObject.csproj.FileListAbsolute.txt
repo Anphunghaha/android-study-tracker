@@ -14,3 +14,5 @@ E:\Tailieuhoc\ProjectAll\ProjectPRM\android-study-tracker\BackEnd_API\API_BookSt
 E:\Tailieuhoc\ProjectAll\ProjectPRM\android-study-tracker\BackEnd_API\API_BookStoreApp\DataAccessObject\obj\Debug\net8.0\refint\DataAccessObject.dll
 E:\Tailieuhoc\ProjectAll\ProjectPRM\android-study-tracker\BackEnd_API\API_BookStoreApp\DataAccessObject\obj\Debug\net8.0\DataAccessObject.pdb
 E:\Tailieuhoc\ProjectAll\ProjectPRM\android-study-tracker\BackEnd_API\API_BookStoreApp\DataAccessObject\obj\Debug\net8.0\ref\DataAccessObject.dll
+E:\Tailieuhoc\ProjectAll\ProjectPRM\android-study-tracker\BackEnd_API\API_BookStoreApp\DataAccessObject\bin\Debug\net8.0\DTOs.dll
+E:\Tailieuhoc\ProjectAll\ProjectPRM\android-study-tracker\BackEnd_API\API_BookStoreApp\DataAccessObject\bin\Debug\net8.0\DTOs.pdb

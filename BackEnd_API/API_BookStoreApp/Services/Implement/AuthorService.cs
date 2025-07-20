@@ -75,7 +75,6 @@ namespace Services.Implement
 
         private Author MapToEntity(AuthorDto dto) => new Author
         {
-            AuthorId = dto.AuthorId,
             Name = dto.Name,
             Bio = dto.Bio,
             BirthDate = dto.BirthDate,
