@@ -1,0 +1,75 @@
+﻿@model List<DTOs.DTO.BookDto>
+
+@{
+    ViewData["Title"] = "Quản lý Sách";
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["Error"]
+    </div>
+}
+
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h2 class="fw-bold text-primary">📚 Quản lý Sách</h2>
+        <p class="text-muted">Quản lý danh sách sách trong cửa hàng</p>
+    </div>
+
+    <div class="mb-4 text-end">
+        <a asp-controller="AdminManage" asp-action="Create" class="btn btn-success btn-lg shadow-sm">
+            <i class="bi bi-plus-circle me-2"></i>Thêm sách
+        </a>
+    </div>
+
+    <div class="card shadow-sm border-0">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover table-striped align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col">Tên sách</th>
+                            <th scope="col">Ảnh</th>
+                            <th scope="col">Thông tin chi tiết</th>
+                            <th scope="col">Tác giả</th>
+                            <th scope="col">Thể loại</th>
+                            <th scope="col">Giá</th>
+                            <th scope="col">Kho</th>
+                            <th scope="col">Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var book in Model)
+                        {
+                            <tr>
+                                <td>@book.Title</td>
+                                <td>
+                                    <img src="@Url.Content("~/image/" + book.ImageUrl)" alt="@book.Title" class="img-thumbnail" style="max-width: 80px; border-radius: 10px;" />
+                                </td>
+                                <td>@book.Description</td>
+                                <td>@book.AuthorName</td>
+                                <td>@book.CategoryName</td>
+                                <td>@book.Price.ToString("C", new System.Globalization.CultureInfo("vi-VN"))</td>
+                                <td>@book.Stock</td>
+                                <td>
+                                    <a asp-controller="AdminManage" asp-action="Edit" asp-route-id="@book.BookID" class="btn btn-primary btn-sm shadow-sm me-2">
+                                        <i class="bi bi-pencil-square me-1"></i>Sửa
+                                    </a>
+                                    <a asp-controller="AdminManage" asp-action="Delete" asp-route-id="@book.BookID" class="btn btn-danger btn-sm shadow-sm" onclick="return confirm('Bạn có chắc muốn xóa sách này?');">
+                                        <i class="bi bi-trash-fill me-1"></i>Xóa
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Optional: Add any custom JavaScript for interactivity (e.g., table sorting, filtering) if needed
+    </script>
+}

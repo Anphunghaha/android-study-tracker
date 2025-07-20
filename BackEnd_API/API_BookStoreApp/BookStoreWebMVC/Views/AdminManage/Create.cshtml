@@ -1,0 +1,80 @@
+﻿@model BookStoreWebMVC.Models.ViewModel.BookCreateEditViewModel
+
+@{
+    ViewData["Title"] = "Thêm sách";
+}
+
+<div class="container py-5">
+    <h2 class="text-primary mb-4">📘 Thêm sách mới</h2>
+
+    <form asp-action="Create" method="post" enctype="multipart/form-data">
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="alert alert-danger">
+                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    <p>@error.ErrorMessage</p>
+                }
+            </div>
+        }
+
+        <div class="mb-3">
+            <!-- Tên sách -->
+            <div class="mb-3">
+                <label asp-for="Book.Title" class="form-label">Tên sách</label>
+                <input asp-for="Book.Title" class="form-control" />
+                <span asp-validation-for="Book.Title" class="text-danger"></span>
+            </div>
+
+            <!-- Tác giả (dropdown) -->
+            <div class="mb-3">
+                <label asp-for="Book.AuthorId" class="form-label">Tác giả</label>
+                <select asp-for="Book.AuthorId" asp-items="Model.Authors" class="form-select">
+                    <option value="">-- Chọn tác giả --</option>
+                </select>
+                <span asp-validation-for="Book.AuthorId" class="text-danger"></span>
+            </div>
+
+            <!-- Thể loại (dropdown) -->
+            <div class="mb-3">
+                <label asp-for="Book.CategoryId" class="form-label">Thể loại</label>
+                <select asp-for="Book.CategoryId" asp-items="Model.Categories" class="form-select">
+                    <option value="">-- Chọn thể loại --</option>
+                </select>
+                <span asp-validation-for="Book.CategoryId" class="text-danger"></span>
+            </div>
+            <!-- Mô tả -->
+            <div class="mb-3">
+                <label asp-for="Book.Description" class="form-label"></label>
+                <textarea asp-for="Book.Description" class="form-control"></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Book.ImageUrl" class="form-label"></label>
+                <textarea asp-for="Book.ImageUrl" class="form-control"></textarea>
+            </div>
+
+            <!-- Giá -->
+            <div class="mb-3">
+                <label asp-for="Book.Price" class="form-label"></label>
+                <input asp-for="Book.Price" type="number" step="1000" class="form-control" />
+            </div>
+
+            <!-- Tồn kho -->
+            <div class="mb-3">
+                <label asp-for="Book.Stock" class="form-label"></label>
+                <input asp-for="Book.Stock" type="number" class="form-control" />
+            </div>
+
+
+        <button type="submit" class="btn btn-success">Thêm sách</button>
+        <a asp-action="Index" class="btn btn-secondary ms-2">Quay lại</a>
+    </form>
+
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

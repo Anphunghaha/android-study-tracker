@@ -1,0 +1,94 @@
+﻿body {
+    background: linear-gradient(135deg, #e0e7ff, #a3bffa);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.card {
+    border-radius: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    }
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.table {
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.table-dark {
+    background-color: #1f2937 !important;
+    color: #fff;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f8fafc;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #4f46e5;
+    border-color: #4f46e5;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+    .btn-primary:hover {
+        background-color: #4338ca;
+        border-color: #4338ca;
+        transform: translateY(-2px);
+    }
+
+.btn-success {
+    background-color: #22c55e;
+    border-color: #22c55e;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+    .btn-success:hover {
+        background-color: #16a34a;
+        border-color: #16a34a;
+        transform: translateY(-2px);
+    }
+
+.btn-danger {
+    background-color: #ef4444;
+    border-color: #ef4444;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+    .btn-danger:hover {
+        background-color: #dc2626;
+        border-color: #dc2626;
+        transform: translateY(-2px);
+    }
+
+.text-primary {
+    color: #4f46e5 !important;
+}
+
+.text-muted {
+    color: #6b7280 !important;
+}
+
+.img-thumbnail {
+    transition: transform 0.3s ease;
+}
+
+    .img-thumbnail:hover {
+        transform: scale(1.1);
+    }
+
+.bi {
+    transition: transform 0.3s ease;
+}
+
+.btn:hover .bi {
+    transform: scale(1.2);
+}

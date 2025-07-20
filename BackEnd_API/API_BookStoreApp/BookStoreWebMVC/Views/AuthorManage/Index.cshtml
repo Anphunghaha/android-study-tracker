@@ -1,0 +1,31 @@
+﻿@model List<DTOs.DTO.AuthorDto>
+
+<h2>Danh sách tác giả</h2>
+
+<a asp-action="Create" class="btn btn-primary mb-2">Thêm tác giả</a>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Tên</th>
+            <th>Tiểu sử</th>
+            <th>Ngày sinh</th>
+            <th>Thao tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var author in Model)
+        {
+            <tr>
+                <td>@author.Name</td>
+                <td>@author.Bio</td>
+                <td>@(author.BirthDate?.ToString("dd/MM/yyyy"))</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@author.AuthorId" class="btn btn-sm btn-warning">Sửa</a>
+                    <a asp-action="Delete" asp-route-id="@author.AuthorId"
+                       onclick="return confirm('Xóa tác giả này?')" class="btn btn-sm btn-danger">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

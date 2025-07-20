@@ -1,0 +1,354 @@
+﻿@using Newtonsoft.Json
+@model BookStoreWebMVC.Models.ViewModel.DashboardViewModel
+
+@{
+    ViewBag.Title = "Thống kê tổng quan";
+}
+
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h2 class="fw-bold text-primary">📊 Thống kê Hệ thống</h2>
+        <p class="text-muted">Tổng quan về hoạt động của cửa hàng sách</p>
+    </div>
+
+    <div class="row g-4 mb-5">
+        <div class="col-md-3 col-sm-6">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-book-fill text-primary fs-2 mb-3"></i>
+                    <h5 class="card-title fw-semibold">Tổng sách</h5>
+                    <p class="card-text display-5 fw-bold text-primary">@Model.TotalBooks</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-cart-fill text-success fs-2 mb-3"></i>
+                    <h5 class="card-title fw-semibold">Tổng đơn hàng</h5>
+                    <p class="card-text display-5 fw-bold text-success">@Model.TotalOrders</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-currency-dollar text-warning fs-2 mb-3"></i>
+                    <h5 class="card-title fw-semibold">Doanh thu</h5>
+                    <p class="card-text display-5 fw-bold text-warning">@Model.TotalRevenue.ToString("C", new System.Globalization.CultureInfo("vi-VN"))</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-bookmark-fill text-info fs-2 mb-3"></i>
+                    <h5 class="card-title fw-semibold">Thể loại</h5>
+                    <p class="card-text display-5 fw-bold text-info">@Model.TotalCategories</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-person-fill text-secondary fs-2 mb-3"></i>
+                    <h5 class="card-title fw-semibold">Tác giả</h5>
+                    <p class="card-text display-5 fw-bold text-secondary">@Model.TotalAuthors</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-box-seam-fill text-dark fs-2 mb-3"></i>
+                    <h5 class="card-title fw-semibold">Số lượng sách đã bán</h5>
+                    <p class="card-text display-5 fw-bold text-dark">@Model.TotalBooksSold</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body text-center">
+                    <i class="bi bi-boxes text-dark fs-2 mb-3"></i>
+                    <h5 class="card-title fw-semibold">Tổng tồn kho</h5>
+                    <p class="card-text display-5 fw-bold text-dark">@Model.TotalStock</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <h3 class="fw-semibold text-center mb-4">Thống kê sản phẩm theo danh mục</h3>
+                    <canvas id="categoryChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <h3 class="fw-semibold text-center mb-4">Tỷ lệ sách đã bán so với tồn kho</h3>
+                    <canvas id="soldBooksChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <h3 class="fw-semibold text-center mb-4">Doanh số sách theo danh mục</h3>
+                    <canvas id="categorySalesChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+    <script>
+        // Category Chart (Doughnut)
+        const ctxCategory = document.getElementById('categoryChart').getContext('2d');
+        const categoryChart = new Chart(ctxCategory, {
+            type: 'doughnut',
+            data: {
+                labels: @Html.Raw(JsonConvert.SerializeObject(Model.CategoryBookCounts.Keys)),
+                datasets: [{
+                    label: 'Sản phẩm theo danh mục',
+                    data: @Html.Raw(JsonConvert.SerializeObject(Model.CategoryBookCounts.Values)),
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.7)',
+                        'rgba(54, 162, 235, 0.7)',
+                        'rgba(255, 206, 86, 0.7)',
+                        'rgba(75, 192, 192, 0.7)',
+                        'rgba(153, 102, 255, 0.7)',
+                        'rgba(255, 159, 64, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 2,
+                    hoverOffset: 20
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: {
+                                size: 14,
+                                family: 'Segoe UI'
+                            }
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                        bodyFont: {
+                            size: 14
+                        },
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.label || '';
+                                let value = context.raw || 0;
+                                let total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                let percentage = ((value / total) * 100).toFixed(1) + '%';
+                                return `${label}: ${value} (${percentage})`;
+                            }
+                        }
+                    }
+                },
+                cutout: '60%'
+            }
+        });
+
+        // Sold Books Chart (Pie)
+        const ctxSoldBooks = document.getElementById('soldBooksChart').getContext('2d');
+        const soldBooksChart = new Chart(ctxSoldBooks, {
+            type: 'pie',
+            data: {
+                labels: ['Sách đã bán', 'Sách còn trong kho'],
+                datasets: [{
+                    label: 'Tỷ lệ sách đã bán so với tồn kho',
+                    data: [@Model.TotalBooksSold, Math.max(0, @Model.TotalStock - @Model.TotalBooksSold)],
+                    backgroundColor: [
+                        'rgba(34, 197, 94, 0.7)', // Green for sold
+                        'rgba(209, 213, 219, 0.7)' // Gray for unsold
+                    ],
+                    borderColor: [
+                        'rgba(34, 197, 94, 1)',
+                        'rgba(209, 213, 219, 1)'
+                    ],
+                    borderWidth: 2,
+                    hoverOffset: 20
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: {
+                                size: 14,
+                                family: 'Segoe UI'
+                            }
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                        bodyFont: {
+                            size: 14
+                        },
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.label || '';
+                                let value = context.raw || 0;
+                                let total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                let percentage = ((value / total) * 100).toFixed(1) + '%';
+                                return `${label}: ${value} (${percentage})`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+                // Sales by Category Chart (Bar)
+        const ctxCategorySales = document.getElementById('categorySalesChart').getContext('2d');
+        const categorySalesChart = new Chart(ctxCategorySales, {
+            type: 'bar',
+            data: {
+                labels: @Html.Raw(JsonConvert.SerializeObject(Model.CategorySalesCounts.Keys)),
+                datasets: [{
+                    label: 'Số sách đã bán',
+                    data: @Html.Raw(JsonConvert.SerializeObject(Model.CategorySalesCounts.Values)),
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.7)',
+                        'rgba(54, 162, 235, 0.7)',
+                        'rgba(255, 206, 86, 0.7)',
+                        'rgba(75, 192, 192, 0.7)',
+                        'rgba(153, 102, 255, 0.7)',
+                        'rgba(255, 159, 64, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false // Hide legend for simplicity
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                        bodyFont: { size: 14 },
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.label || '';
+                                let value = context.raw || 0;
+                                let total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                let percentage = ((value / total) * 100).toFixed(1) + '%';
+                                return `${label}: ${value} (${percentage})`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Số sách đã bán',
+                            font: { size: 14 }
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Danh mục',
+                            font: { size: 14 }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+}
+
+<style>
+    body {
+        background: linear-gradient(135deg, #e0e7ff, #a3bffa);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .card {
+        border-radius: 15px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+    .card-body {
+        padding: 1.5rem;
+    }
+
+    .display-5 {
+        font-size: 2.5rem;
+        line-height: 1.2;
+    }
+
+    .text-primary {
+        color: #4f46e5 !important;
+    }
+
+    .text-success {
+        color: #22c55e !important;
+    }
+
+    .text-warning {
+        color: #f59e0b !important;
+    }
+
+    .text-info {
+        color: #06b6d4 !important;
+    }
+
+    .text-secondary {
+        color: #6b7280 !important;
+    }
+
+    .text-dark {
+        color: #1f2937 !important;
+    }
+
+    canvas {
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    .bi {
+        transition: transform 0.3s ease;
+    }
+
+    .card:hover .bi {
+        transform: scale(1.2);
+    }
+</style>

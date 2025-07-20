@@ -1,0 +1,78 @@
+﻿@model List<DTOs.DTO.OrderWithDetailsDTO>
+
+@{
+    ViewData["Title"] = "Quản lý đơn hàng";
+    var statusList = new List<string> {
+        "Đang xử lý + Chưa thanh toán",
+        "Đang xử lý + Đã thanh toán",
+        "Hoàn thành"
+    };
+}
+
+<h2>Quản lý đơn hàng</h2>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Mã đơn</th>
+            <th>Tên khách</th>
+            <th>Ngày tạo</th>
+            <th>Trạng thái</th>
+            <th>Chi tiết đơn hàng</th>
+            <th>Chức năng</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td>@order.OrderId</td>
+                <td>@order.UserName</td>
+                <td>@order.OrderDate.ToString("dd/MM/yyyy")</td>
+                <td>@order.Status</td>
+                <td>
+                    <ul>
+                        @foreach (var detail in order.Items)
+                        {
+                            <li>
+                                Sách: <strong>@detail.BookTitle</strong>,
+                                SL: <strong>@detail.Quantity</strong>,
+                                Giá: <strong>@detail.UnitPrice.ToString("N0")</strong>
+                            </li>
+                        }
+                    </ul>
+                </td>
+                <td>
+                    @if (order.Status == "Hoàn thành")
+                    {
+                        <span class="text-muted">Đã hoàn thành</span>
+                    }
+                    else
+                    {
+                        <form asp-action="UpdateStatus" method="post" style="display:inline;">
+                            <input type="hidden" name="OrderId" value="@order.OrderId" />
+                            <select name="NewStatus" class="form-select d-inline w-auto">
+                                @foreach (var status in statusList)
+                                {
+                                    <option value="@status" selected="@(order.Status == status)">
+                                        @status
+                                    </option>
+                                }
+                            </select>
+                            <button type="submit" class="btn btn-sm btn-primary">Cập nhật</button>
+                        </form>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
